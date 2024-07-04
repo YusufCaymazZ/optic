@@ -8,6 +8,6 @@ namespace optic
 {
     internal class Class1
     {
-        int sa;
+        
     }
 }
