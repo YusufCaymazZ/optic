@@ -1,6 +1,6 @@
 ﻿namespace optic
 {
-    partial class Form1
+    partial class ders_islemleri
     {
         /// <summary>
         ///  Required designer variable.

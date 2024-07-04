@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace optic
 {
-    internal class Class1
+    internal class xlsReadWriter
     {
-        
     }
 }

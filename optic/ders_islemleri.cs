@@ -1,8 +1,8 @@
 namespace optic
 {
-    public partial class Form1 : Form
+    public partial class ders_islemleri : Form
     {
-        public Form1()
+        public ders_islemleri()
         {
             InitializeComponent();
         }
