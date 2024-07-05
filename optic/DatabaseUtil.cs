@@ -1,27 +1,44 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using MySql.Data.MySqlClient;
 
-public class ApplicationDbContext : DbContext
+public class DatabaseConnection
 {
-    public DbSet<User> Users { get; set; }
+    private MySqlConnection connection;
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public DatabaseConnection(string server = "127.0.0.1", string database = "optic", string user = "root", string password = "")
+    {
+        string connectionString = $"Server={server};Database={database};Uid={user};Pwd={password};";
+        connection = new MySqlConnection(connectionString);
+    }
+
+    public void OpenConnection()
     {
         try
         {
-            optionsBuilder.UseMySql("Server=127.0.0.1;Database=optic;User=root;Password=;",
-                ServerVersion.AutoDetect("Server=127.0.0.1;Database=optic;User=root;Password=;"));
+            connection.Open();
             Console.WriteLine("Veritabanı bağlantısı başarıyla kuruldu.");
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Veritabanı bağlantısı sırasında bir hata oluştu: {ex.Message}");
         }
-
     }
-}
 
+    public void CloseConnection()
+    {
+        try
+        {
+            connection.Close();
+            Console.WriteLine("Veritabanı bağlantısı başarıyla kapatıldı.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Veritabanı bağlantısını kapatırken bir hata oluştu: {ex.Message}");
+        }
+    }
 
-public class User { 
-    public int Id { get; set; }
-    public string Name { get; set; }
+    public MySqlConnection GetConnection()
+    {
+        return connection;
+    }
 }

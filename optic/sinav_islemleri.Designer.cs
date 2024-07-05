@@ -48,6 +48,7 @@
             button1 = new Button();
             button2 = new Button();
             tableLayoutPanel8 = new TableLayoutPanel();
+            mysqltest = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -55,6 +56,7 @@
             tableLayoutPanel4.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
             tableLayoutPanel7.SuspendLayout();
+            tableLayoutPanel8.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridView1
@@ -308,6 +310,7 @@
             tableLayoutPanel8.ColumnCount = 2;
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel8.Controls.Add(mysqltest, 0, 0);
             tableLayoutPanel8.Dock = DockStyle.Fill;
             tableLayoutPanel8.Location = new Point(3, 99);
             tableLayoutPanel8.Name = "tableLayoutPanel8";
@@ -316,6 +319,17 @@
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel8.Size = new Size(343, 91);
             tableLayoutPanel8.TabIndex = 3;
+            // 
+            // mysqltest
+            // 
+            mysqltest.Dock = DockStyle.Fill;
+            mysqltest.Location = new Point(3, 3);
+            mysqltest.Name = "mysqltest";
+            mysqltest.Size = new Size(165, 39);
+            mysqltest.TabIndex = 0;
+            mysqltest.Text = "eda gay";
+            mysqltest.UseVisualStyleBackColor = true;
+            mysqltest.Click += mysqltest_Click;
             // 
             // sinav_islemleri
             // 
@@ -341,6 +355,7 @@
             tableLayoutPanel4.ResumeLayout(false);
             tableLayoutPanel5.ResumeLayout(false);
             tableLayoutPanel7.ResumeLayout(false);
+            tableLayoutPanel8.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -365,5 +380,6 @@
         private TableLayoutPanel tableLayoutPanel10;
         private Button button3;
         private Button button4;
+        private Button mysqltest;
     }
 }
