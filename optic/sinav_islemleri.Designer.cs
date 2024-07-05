@@ -49,6 +49,7 @@
             button2 = new Button();
             tableLayoutPanel8 = new TableLayoutPanel();
             mysqltest = new Button();
+            txtoutput = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -311,6 +312,7 @@
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel8.Controls.Add(mysqltest, 0, 0);
+            tableLayoutPanel8.Controls.Add(txtoutput, 1, 0);
             tableLayoutPanel8.Dock = DockStyle.Fill;
             tableLayoutPanel8.Location = new Point(3, 99);
             tableLayoutPanel8.Name = "tableLayoutPanel8";
@@ -330,6 +332,18 @@
             mysqltest.Text = "eda gay";
             mysqltest.UseVisualStyleBackColor = true;
             mysqltest.Click += mysqltest_Click;
+            // 
+            // txtoutput
+            // 
+            txtoutput.AutoSize = true;
+            txtoutput.Dock = DockStyle.Fill;
+            txtoutput.Location = new Point(174, 0);
+            txtoutput.Name = "txtoutput";
+            txtoutput.Size = new Size(166, 45);
+            txtoutput.TabIndex = 1;
+            txtoutput.Text = "test";
+            txtoutput.TextAlign = ContentAlignment.MiddleCenter;
+            txtoutput.Click += txtoutput_Click;
             // 
             // sinav_islemleri
             // 
@@ -356,6 +370,7 @@
             tableLayoutPanel5.ResumeLayout(false);
             tableLayoutPanel7.ResumeLayout(false);
             tableLayoutPanel8.ResumeLayout(false);
+            tableLayoutPanel8.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -381,5 +396,6 @@
         private Button button3;
         private Button button4;
         private Button mysqltest;
+        private Label txtoutput;
     }
 }

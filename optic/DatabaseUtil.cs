@@ -16,7 +16,7 @@ public class DatabaseConnection
         try
         {
             connection.Open();
-            Console.WriteLine("Veritabanı bağlantısı başarıyla kuruldu.");
+            MessageBox.Show($"Veritabanı bağlantısı oluştu");
         }
         catch (Exception ex)
         {

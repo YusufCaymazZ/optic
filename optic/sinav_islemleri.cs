@@ -19,28 +19,20 @@ namespace optic
         {
             try
             {
-                using (var context = new ApplicationDbContext())
-                {
-                    // Veritabanına bir kullanıcı ekleyin
-                    var newUser = new User { Name = "Test User" };
-                    context.Users.Add(newUser);
-                    context.SaveChanges();
-                    MessageBox.Show("Kullanıcı başarıyla eklendi.");
+                DatabaseConnection dbConnection = new DatabaseConnection();
+                dbConnection.OpenConnection();
+             
 
-                    // Veritabanındaki tüm kullanıcıları getirin
-                    var users = context.Users.ToList();
-                    foreach (var user in users)
-                    {
-                        Console.WriteLine($"ID: {user.Id}, Name: {user.Name}");
-                    }
-
-                    MessageBox.Show("Veritabanındaki kullanıcılar başarıyla listelendi.");
-                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Veritabanı işlemi sırasında bir hata oluştu: {ex.Message}");
             }
+
+        }
+
+        private void txtoutput_Click(object sender, EventArgs e)
+        {
 
         }
     }
