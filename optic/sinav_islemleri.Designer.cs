@@ -325,11 +325,12 @@
             // mysqltest
             // 
             mysqltest.Dock = DockStyle.Fill;
+            mysqltest.ForeColor = SystemColors.ControlText;
             mysqltest.Location = new Point(3, 3);
             mysqltest.Name = "mysqltest";
             mysqltest.Size = new Size(165, 39);
             mysqltest.TabIndex = 0;
-            mysqltest.Text = "eda gay";
+            mysqltest.Text = "db check";
             mysqltest.UseVisualStyleBackColor = true;
             mysqltest.Click += mysqltest_Click;
             // 
