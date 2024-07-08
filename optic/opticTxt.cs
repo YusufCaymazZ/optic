@@ -13,7 +13,7 @@ namespace optic
         {
             sinav_islemleri sinav_islemleri = new sinav_islemleri();
             sinav_islemleri.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void opticTxt_FormClosing(object sender, FormClosingEventArgs e)

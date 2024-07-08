@@ -83,14 +83,14 @@ namespace optic
         {
             opticTxt opticTxt = new opticTxt();
             opticTxt.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void geri_button_Click(object sender, EventArgs e)
         {
             Ana_Sayfa form = new Ana_Sayfa();
             form.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void sinav_islemleri_FormClosed(object sender, FormClosedEventArgs e)
@@ -98,5 +98,7 @@ namespace optic
             Application.Exit();
 
         }
+
+        
     }
 }
