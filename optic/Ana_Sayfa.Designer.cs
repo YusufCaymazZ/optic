@@ -85,6 +85,7 @@
             MinimumSize = new Size(1200, 700);
             Name = "Ana_Sayfa";
             Text = "Ana Sayfa";
+            FormClosing += Ana_Sayfa_FormClosing;
             tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }

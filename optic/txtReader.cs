@@ -8,5 +8,6 @@ namespace optic
 {
     internal class txtReader
     {
+
     }
 }
