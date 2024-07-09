@@ -3,19 +3,30 @@ using System.Linq;
 using System.Windows.Forms;
 using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
+using System.Collections.Generic;
+using System.Data;
+
 
 
 namespace optic
 {
     public partial class sinav_islemleri : Form
     {
-        public sinav_islemleri()
+        DatabaseConnection db;
+        DataCrud data;
+        private List<String> ogrData;
+        DataTable dt = new DataTable();
+        public sinav_islemleri(DatabaseConnection db)
         {
             InitializeComponent();
             InitializeDataGridView();
             // Boyutlandırma düğmesini devre dışı bırak
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+            data = new DataCrud(db);
+            ogrData = data.GetAllStuds();
+
+
         }
 
 
@@ -99,6 +110,64 @@ namespace optic
 
         }
 
-        
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ogr_guncelle form = new ogr_guncelle();
+            form.Show();
+            this.Hide();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (data != null)
+            {
+                this.ogrData = this.data.GetAllStuds();
+
+                if (this.ogrData != null)
+                {
+                    // Mevcut satırları temizle
+                    HandledUsers.Rows.Clear();
+
+                    int totalRows = (int)Math.Ceiling(ogrData.Count / 19.0);
+
+                    for (int rowIndex = 0; rowIndex < totalRows; rowIndex++)
+                    {
+                        // Yeni bir satır oluştur ve 19 hücre olacak şekilde ayarla
+                        DataGridViewRow row = new DataGridViewRow();
+                        row.CreateCells(HandledUsers);
+
+                        // Satıra veri ekle
+                        for (int colIndex = 0; colIndex < 18; colIndex++)
+                        {
+                            int dataIndex = rowIndex * 18 + colIndex;
+
+                            if (dataIndex < ogrData.Count)
+                            {
+                                row.Cells[colIndex].Value = ogrData[dataIndex] ?? (object)DBNull.Value;
+                            }
+                            else
+                            {
+                                row.Cells[colIndex].Value = DBNull.Value;
+                            }
+                        }
+
+                        // Satırı DataGridView'e ekle
+                        HandledUsers.Rows.Add(row);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("ogrData is null");
+                }
+            }
+            else
+            {
+                MessageBox.Show("data is null");
+            }
+        }
     }
 }
+
+
+
+

@@ -15,12 +15,10 @@ public class DatabaseConnection
     {
         try
         {
-            connection.Open();
-            MessageBox.Show($"Veritabanı bağlantısı oluştu");
-        }
+            this.connection.Open();        }
         catch (Exception ex)
         {
-            Console.WriteLine($"Veritabanı bağlantısı sırasında bir hata oluştu: {ex.Message}");
+            MessageBox.Show($"Veritabanı bağlantısı sırasında bir hata oluştu: \n {ex.Message}");
         }
     }
 
@@ -28,17 +26,16 @@ public class DatabaseConnection
     {
         try
         {
-            connection.Close();
-            Console.WriteLine("Veritabanı bağlantısı başarıyla kapatıldı.");
+            this.connection.Close();
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Veritabanı bağlantısını kapatırken bir hata oluştu: {ex.Message}");
+            MessageBox.Show($"Veritabanı bağlantısını kapatırken bir hata oluştu: \n{ex.Message}");
         }
     }
 
     public MySqlConnection GetConnection()
     {
-        return connection;
+        return this.connection;
     }
 }

@@ -63,12 +63,15 @@
             // 
             // HandledUsers
             // 
+            HandledUsers.AllowUserToAddRows = false;
+            HandledUsers.AllowUserToDeleteRows = false;
             HandledUsers.BackgroundColor = Color.MidnightBlue;
             HandledUsers.Dock = DockStyle.Bottom;
             HandledUsers.GridColor = SystemColors.GrayText;
             HandledUsers.Location = new Point(0, 402);
             HandledUsers.Margin = new Padding(4);
             HandledUsers.Name = "HandledUsers";
+            HandledUsers.ReadOnly = true;
             HandledUsers.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             HandledUsers.SelectionMode = DataGridViewSelectionMode.CellSelect;
             HandledUsers.Size = new Size(1184, 259);
@@ -304,6 +307,7 @@
             button1.TabIndex = 0;
             button1.Text = "Öğrenci Getir";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
@@ -314,6 +318,7 @@
             button2.TabIndex = 1;
             button2.Text = "Öğrenci Güncelle";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // tableLayoutPanel8
             // 

@@ -16,7 +16,8 @@ namespace optic
 
         private void sinav_btn_Click_1(object sender, EventArgs e)
         {
-            sinav_islemleri sinav_islemleri = new sinav_islemleri();
+            DatabaseConnection conn = new DatabaseConnection();
+            sinav_islemleri sinav_islemleri = new sinav_islemleri(conn);
             sinav_islemleri.Show();
             this.Hide();
         }

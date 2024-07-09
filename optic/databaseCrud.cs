@@ -2,12 +2,11 @@
 using System.Xml.Linq;
 using DocumentFormat.OpenXml.Wordprocessing;
 using MySql.Data.MySqlClient;
-using System.IO;
-public class UserRepository
+public class DataCrud
 {
     private DatabaseConnection dbConnection;
-
-    public UserRepository(DatabaseConnection dbConnection)
+    
+    public DataCrud(DatabaseConnection dbConnection)
     {
         this.dbConnection = dbConnection;
     }
@@ -18,7 +17,7 @@ public class UserRepository
         try
         {
             dbConnection.OpenConnection();
-            MySqlCommand cmd = new MySqlCommand($"INSERT INTO optic_txt (ogr_num,ogr_isim,ders1,ders2,ders3,ders4,ders5,ders6, cevap1, cevap2, cevap3, cevap4, cevap5, cevap6" +
+            MySqlCommand cmd = new MySqlCommand($"INSERT INTO optictxt (ogr_num,ogr_isim,ders1,ders2,ders3,ders4,ders5,ders6, cevap1, cevap2, cevap3, cevap4, cevap5, cevap6" +
                 $"oturum, grup, kitapcik, durum) VALUES (@ogr_num,@ogr_isim,@ders1,@ders2,@ders3,@ders4,@ders5,@ders6,@cevap1,@cevap1,@cevap1,@cevap1,@cevap1,@cevap1,@oturum,@grup,@kitapcik, @durum)", dbConnection.GetConnection());//SYNTAXI DÜZELT
             cmd.Parameters.AddWithValue("@ogr_num", ogr_num);
             cmd.Parameters.AddWithValue("@ogr_isim", ogr_isim);
@@ -165,7 +164,7 @@ public class UserRepository
                 throw new ArgumentException("En az bir alan güncellenmelidir.");
             }
 
-            string query = "UPDATE optic_txt SET " + string.Join(", ", updates) + " WHERE ogr_num = @ogr_num";
+            string query = "UPDATE optictxt SET " + string.Join(", ", updates) + " WHERE ogr_num = @ogr_num";
             cmd.CommandText = query;
             cmd.Connection = dbConnection.GetConnection();
 
@@ -198,29 +197,46 @@ public class UserRepository
 
 
 
-    public void GetAllUsers()
+    public List<string> GetAllStuds()
     {
+        List<string> data = new List<string>();
+
         try
         {
             dbConnection.OpenConnection();
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM Users", dbConnection.GetConnection());
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM optictxt WHERE CHAR_LENGTH(ogr_num) != 9 " +
+                "OR ogr_num IN (SELECT ogr_num FROM optictxt GROUP BY ogr_num HAVING COUNT(*) > 1);", dbConnection.GetConnection());
             MySqlDataReader reader = cmd.ExecuteReader();
 
             while (reader.Read())
             {
-                Console.WriteLine($"ID: {reader["Id"]}, Name: {reader["Name"]}");
+                for (int i = 1; i < reader.FieldCount; i++)
+                {
+                    if (!reader.IsDBNull(i))
+                    {
+                        data.Add(reader.GetString(i));
+                    }
+                    else
+                    {
+                        data.Add(string.Empty); // Null değerler yerine boş string ekleniyor
+                    }
+                }
             }
             reader.Close();
         }
         catch (Exception ex)
-        {
-            Console.WriteLine($"Kullanıcıları getirirken bir hata oluştu: {ex.Message}");
+        {   
+            MessageBox.Show($"Kullanıcıları getirirken bir hata oluştu: {ex.Message}");
         }
         finally
-        {
-            dbConnection.CloseConnection();
+        {   
+            dbConnection.CloseConnection( );
         }
+
+        return data;
     }
+
+
 
     // UpdateUser ve DeleteUser yöntemlerini ekleyebilirsiniz
 }
