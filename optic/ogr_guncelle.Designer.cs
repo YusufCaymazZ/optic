@@ -697,6 +697,7 @@
             guncellebtn.TabIndex = 14;
             guncellebtn.Text = "Güncelle";
             guncellebtn.UseVisualStyleBackColor = true;
+            guncellebtn.Click += guncellebtn_Click;
             // 
             // durumlabel
             // 

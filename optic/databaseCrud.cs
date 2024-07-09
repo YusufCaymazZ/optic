@@ -17,8 +17,11 @@ public class DataCrud
         try
         {
             dbConnection.OpenConnection();
-            MySqlCommand cmd = new MySqlCommand($"INSERT INTO optictxt (ogr_num,ogr_isim,ders1,ders2,ders3,ders4,ders5,ders6, cevap1, cevap2, cevap3, cevap4, cevap5, cevap6" +
-                $"oturum, grup, kitapcik, durum) VALUES (@ogr_num,@ogr_isim,@ders1,@ders2,@ders3,@ders4,@ders5,@ders6,@cevap1,@cevap1,@cevap1,@cevap1,@cevap1,@cevap1,@oturum,@grup,@kitapcik, @durum)", dbConnection.GetConnection());//SYNTAXI DÜZELT
+            string query = $"INSERT INTO optictxt (ogr_num, ogr_isim, ders1, ders2, ders3, ders4, ders5, ders6, cevap1, cevap2, cevap3, cevap4, cevap5, cevap6, oturum, grup, kitapcik, durum) " +
+               $"VALUES (@ogr_num, @ogr_isim, @ders1, @ders2, @ders3, @ders4, @ders5, @ders6, @cevap1, @cevap2, @cevap3, @cevap4, @cevap5, @cevap6, @oturum, @grup, @kitapcik, @durum)";
+
+
+            MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection());//SYNTAXI DÜZELT
             cmd.Parameters.AddWithValue("@ogr_num", ogr_num);
             cmd.Parameters.AddWithValue("@ogr_isim", ogr_isim);
             cmd.Parameters.AddWithValue("@ders1", ders1);
@@ -38,11 +41,11 @@ public class DataCrud
             cmd.Parameters.AddWithValue("@kitapcik", kitapcik);
             cmd.Parameters.AddWithValue("@durum", durum);
             cmd.ExecuteNonQuery();
-            MessageBox.Show("Kullanıcı başarıyla eklendi.");
+            
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Kullanıcı ekleme sırasında bir hata oluştu: {ex.Message}");
+            MessageBox.Show($"Kullanıcı ekleme sırasında bir hata oluştu: {ex.Message}");
         }
         finally
         {

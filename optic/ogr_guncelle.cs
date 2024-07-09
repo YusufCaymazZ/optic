@@ -12,24 +12,7 @@ namespace optic
 {
     public partial class ogr_guncelle : Form
     {
-        private String ogrnum { get; set; }
-        private String ogrisim { get; set; }
-        private String ders1 { get; set; }
-        private String ders2 { get; set; }
-        private String ders3 { get; set; }
-        private String ders4 { get; set; }
-        private String ders5 { get; set; }
-        private String ders6 { get; set; }
-        private String cevap1 { get; set; }
-        private String cevap2 { get; set; }
-        private String cevap3 { get; set; }
-        private String cevap4 { get; set; }
-        private String cevap5 { get; set; }
-        private String cevap6 { get; set; }
-        private String oturum { get; set; }
-        private String grup { get; set; }
-        private String kitapcik { get; set; }
-        private String gelmedi { get; set; }
+        
         public ogr_guncelle()
         {
             InitializeComponent();
@@ -45,9 +28,15 @@ namespace optic
 
         private void geribtn_Click(object sender, EventArgs e)
         {
-            opticTxt opticTxt = new opticTxt();
+            DatabaseConnection conn = new DatabaseConnection(); 
+            opticTxt opticTxt = new opticTxt(conn);
             opticTxt.Show();
             this.Hide();
+        }
+
+        private void guncellebtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

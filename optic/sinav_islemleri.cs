@@ -92,7 +92,8 @@ namespace optic
 
         private void optic_txt_Click(object sender, EventArgs e)
         {
-            opticTxt opticTxt = new opticTxt();
+            DatabaseConnection connection = new DatabaseConnection();
+            opticTxt opticTxt = new opticTxt(connection);
             opticTxt.Show();
             this.Hide();
         }
