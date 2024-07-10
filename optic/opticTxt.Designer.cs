@@ -77,8 +77,12 @@
             label5 = new Label();
             tableLayoutPanel7 = new TableLayoutPanel();
             tableLayoutPanel8 = new TableLayoutPanel();
+            opticCombo = new ComboBox();
+            label20 = new Label();
             tableLayoutPanel9 = new TableLayoutPanel();
             button1 = new Button();
+            opticEkle = new Button();
+            button2 = new Button();
             tableLayoutPanel10 = new TableLayoutPanel();
             geri_button = new Button();
             tableLayoutPanel11 = new TableLayoutPanel();
@@ -119,8 +123,11 @@
             c6Bas = new TextBox();
             c6Bit = new TextBox();
             label18 = new Label();
+            opticturTxt = new TextBox();
+            label22 = new Label();
             tableLayoutPanel13 = new TableLayoutPanel();
             tableLayoutPanel18 = new TableLayoutPanel();
+            label21 = new Label();
             tableLayoutPanel19 = new TableLayoutPanel();
             tableLayoutPanel20 = new TableLayoutPanel();
             tableLayoutPanel21 = new TableLayoutPanel();
@@ -142,6 +149,7 @@
             tableLayoutPanel25.SuspendLayout();
             tableLayoutPanel24.SuspendLayout();
             tableLayoutPanel7.SuspendLayout();
+            tableLayoutPanel8.SuspendLayout();
             tableLayoutPanel9.SuspendLayout();
             tableLayoutPanel10.SuspendLayout();
             tableLayoutPanel12.SuspendLayout();
@@ -158,6 +166,7 @@
             tableLayoutPanel17.SuspendLayout();
             tableLayoutPanel39.SuspendLayout();
             tableLayoutPanel13.SuspendLayout();
+            tableLayoutPanel18.SuspendLayout();
             tableLayoutPanel21.SuspendLayout();
             SuspendLayout();
             // 
@@ -240,6 +249,7 @@
             d4Bas.Name = "d4Bas";
             d4Bas.Size = new Size(62, 27);
             d4Bas.TabIndex = 0;
+            d4Bas.Text = "00";
             // 
             // d4Bit
             // 
@@ -248,6 +258,7 @@
             d4Bit.Name = "d4Bit";
             d4Bit.Size = new Size(63, 27);
             d4Bit.TabIndex = 1;
+            d4Bit.Text = "00";
             // 
             // tableLayoutPanel30
             // 
@@ -271,6 +282,7 @@
             d3Bas.Name = "d3Bas";
             d3Bas.Size = new Size(62, 27);
             d3Bas.TabIndex = 0;
+            d3Bas.Text = "00";
             // 
             // d3Bit
             // 
@@ -279,6 +291,7 @@
             d3Bit.Name = "d3Bit";
             d3Bit.Size = new Size(63, 27);
             d3Bit.TabIndex = 1;
+            d3Bit.Text = "00";
             // 
             // tableLayoutPanel29
             // 
@@ -302,6 +315,7 @@
             d2Bas.Name = "d2Bas";
             d2Bas.Size = new Size(62, 27);
             d2Bas.TabIndex = 0;
+            d2Bas.Text = "00";
             // 
             // d2Bit
             // 
@@ -310,6 +324,7 @@
             d2Bit.Name = "d2Bit";
             d2Bit.Size = new Size(63, 27);
             d2Bit.TabIndex = 1;
+            d2Bit.Text = "00";
             // 
             // label8
             // 
@@ -388,6 +403,7 @@
             d1Bas.Name = "d1Bas";
             d1Bas.Size = new Size(62, 27);
             d1Bas.TabIndex = 0;
+            d1Bas.Text = "00";
             // 
             // d1Bit
             // 
@@ -396,6 +412,7 @@
             d1Bit.Name = "d1Bit";
             d1Bit.Size = new Size(63, 27);
             d1Bit.TabIndex = 1;
+            d1Bit.Text = "00";
             // 
             // tableLayoutPanel27
             // 
@@ -419,6 +436,7 @@
             durumBas.Name = "durumBas";
             durumBas.Size = new Size(62, 27);
             durumBas.TabIndex = 0;
+            durumBas.Text = "00";
             // 
             // durumBit
             // 
@@ -427,6 +445,7 @@
             durumBit.Name = "durumBit";
             durumBit.Size = new Size(63, 27);
             durumBit.TabIndex = 1;
+            durumBit.Text = "00";
             // 
             // label6
             // 
@@ -493,6 +512,7 @@
             ogrNumBas.Name = "ogrNumBas";
             ogrNumBas.Size = new Size(60, 27);
             ogrNumBas.TabIndex = 0;
+            ogrNumBas.Text = "00";
             // 
             // ogrNumBit
             // 
@@ -501,6 +521,7 @@
             ogrNumBit.Name = "ogrNumBit";
             ogrNumBit.Size = new Size(65, 27);
             ogrNumBit.TabIndex = 1;
+            ogrNumBit.Text = "00";
             // 
             // tableLayoutPanel22
             // 
@@ -524,6 +545,7 @@
             ogrAdBas.Name = "ogrAdBas";
             ogrAdBas.Size = new Size(62, 27);
             ogrAdBas.TabIndex = 0;
+            ogrAdBas.Text = "00";
             // 
             // ogrAdBit
             // 
@@ -532,6 +554,7 @@
             ogrAdBit.Name = "ogrAdBit";
             ogrAdBit.Size = new Size(63, 27);
             ogrAdBit.TabIndex = 1;
+            ogrAdBit.Text = "00";
             // 
             // label1
             // 
@@ -600,6 +623,7 @@
             KitapcikBas.Name = "KitapcikBas";
             KitapcikBas.Size = new Size(62, 27);
             KitapcikBas.TabIndex = 0;
+            KitapcikBas.Text = "00";
             // 
             // KitapcikBit
             // 
@@ -608,6 +632,7 @@
             KitapcikBit.Name = "KitapcikBit";
             KitapcikBit.Size = new Size(63, 27);
             KitapcikBit.TabIndex = 1;
+            KitapcikBit.Text = "00";
             // 
             // tableLayoutPanel25
             // 
@@ -631,6 +656,7 @@
             grupBas.Name = "grupBas";
             grupBas.Size = new Size(62, 27);
             grupBas.TabIndex = 0;
+            grupBas.Text = "00";
             // 
             // grupBit
             // 
@@ -639,6 +665,7 @@
             grupBit.Name = "grupBit";
             grupBit.Size = new Size(63, 27);
             grupBit.TabIndex = 1;
+            grupBit.Text = "00";
             // 
             // tableLayoutPanel24
             // 
@@ -662,6 +689,7 @@
             oturumBas.Name = "oturumBas";
             oturumBas.Size = new Size(62, 27);
             oturumBas.TabIndex = 0;
+            oturumBas.Text = "00";
             // 
             // oturumBit
             // 
@@ -670,6 +698,7 @@
             oturumBit.Name = "oturumBit";
             oturumBit.Size = new Size(63, 27);
             oturumBit.TabIndex = 1;
+            oturumBit.Text = "00";
             // 
             // label3
             // 
@@ -727,9 +756,10 @@
             // 
             // tableLayoutPanel8
             // 
-            tableLayoutPanel8.ColumnCount = 2;
+            tableLayoutPanel8.ColumnCount = 1;
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel8.Controls.Add(opticCombo, 0, 0);
+            tableLayoutPanel8.Controls.Add(label20, 0, 1);
             tableLayoutPanel8.Dock = DockStyle.Fill;
             tableLayoutPanel8.Location = new Point(296, 3);
             tableLayoutPanel8.Name = "tableLayoutPanel8";
@@ -740,12 +770,34 @@
             tableLayoutPanel8.Size = new Size(287, 156);
             tableLayoutPanel8.TabIndex = 0;
             // 
+            // opticCombo
+            // 
+            opticCombo.Dock = DockStyle.Fill;
+            opticCombo.FormattingEnabled = true;
+            opticCombo.Location = new Point(3, 3);
+            opticCombo.Name = "opticCombo";
+            opticCombo.Size = new Size(281, 29);
+            opticCombo.TabIndex = 0;
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Dock = DockStyle.Fill;
+            label20.Font = new Font("Century Gothic", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label20.Location = new Point(3, 55);
+            label20.Name = "label20";
+            label20.Size = new Size(281, 55);
+            label20.TabIndex = 1;
+            label20.Text = "Kullanılmış olan optik türü önceden seçilmişse buradan seçiniz. Yukarıdaki mesaj kutularını boş bırakabilirsiniz seçtiyseniz.";
+            // 
             // tableLayoutPanel9
             // 
             tableLayoutPanel9.ColumnCount = 2;
             tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel9.Controls.Add(button1, 0, 0);
+            tableLayoutPanel9.Controls.Add(opticEkle, 1, 0);
+            tableLayoutPanel9.Controls.Add(button2, 1, 1);
             tableLayoutPanel9.Dock = DockStyle.Fill;
             tableLayoutPanel9.Location = new Point(3, 3);
             tableLayoutPanel9.Name = "tableLayoutPanel9";
@@ -766,6 +818,28 @@
             button1.Text = "Dosya Ekle";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
+            // 
+            // opticEkle
+            // 
+            opticEkle.Dock = DockStyle.Fill;
+            opticEkle.Location = new Point(146, 3);
+            opticEkle.Name = "opticEkle";
+            opticEkle.Size = new Size(138, 49);
+            opticEkle.TabIndex = 1;
+            opticEkle.Text = "Optik Ekle";
+            opticEkle.UseVisualStyleBackColor = true;
+            opticEkle.Click += opticEkle_Click;
+            // 
+            // button2
+            // 
+            button2.Dock = DockStyle.Fill;
+            button2.Location = new Point(146, 58);
+            button2.Name = "button2";
+            button2.Size = new Size(138, 49);
+            button2.TabIndex = 2;
+            button2.Text = "Optik Sil";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // tableLayoutPanel10
             // 
@@ -868,6 +942,7 @@
             d6Bas.Name = "d6Bas";
             d6Bas.Size = new Size(62, 27);
             d6Bas.TabIndex = 0;
+            d6Bas.Text = "00";
             // 
             // d6Bit
             // 
@@ -876,6 +951,7 @@
             d6Bit.Name = "d6Bit";
             d6Bit.Size = new Size(63, 27);
             d6Bit.TabIndex = 1;
+            d6Bit.Text = "00";
             // 
             // tableLayoutPanel32
             // 
@@ -899,6 +975,7 @@
             d5Bas.Name = "d5Bas";
             d5Bas.Size = new Size(62, 27);
             d5Bas.TabIndex = 0;
+            d5Bas.Text = "00";
             // 
             // d5Bit
             // 
@@ -907,6 +984,7 @@
             d5Bit.Name = "d5Bit";
             d5Bit.Size = new Size(63, 27);
             d5Bit.TabIndex = 1;
+            d5Bit.Text = "00";
             // 
             // label11
             // 
@@ -975,6 +1053,7 @@
             c3Bas.Name = "c3Bas";
             c3Bas.Size = new Size(62, 27);
             c3Bas.TabIndex = 0;
+            c3Bas.Text = "00";
             // 
             // c3Bit
             // 
@@ -983,6 +1062,7 @@
             c3Bit.Name = "c3Bit";
             c3Bit.Size = new Size(63, 27);
             c3Bit.TabIndex = 1;
+            c3Bit.Text = "0";
             // 
             // tableLayoutPanel35
             // 
@@ -1006,6 +1086,7 @@
             c2Bas.Name = "c2Bas";
             c2Bas.Size = new Size(62, 27);
             c2Bas.TabIndex = 0;
+            c2Bas.Text = "00";
             // 
             // c2Bit
             // 
@@ -1014,6 +1095,7 @@
             c2Bit.Name = "c2Bit";
             c2Bit.Size = new Size(63, 27);
             c2Bit.TabIndex = 1;
+            c2Bit.Text = "00";
             // 
             // tableLayoutPanel34
             // 
@@ -1037,6 +1119,7 @@
             c1Bas.Name = "c1Bas";
             c1Bas.Size = new Size(62, 27);
             c1Bas.TabIndex = 0;
+            c1Bas.Text = "00";
             // 
             // c1Bit
             // 
@@ -1045,6 +1128,7 @@
             c1Bit.Name = "c1Bit";
             c1Bit.Size = new Size(63, 27);
             c1Bit.TabIndex = 1;
+            c1Bit.Text = "00";
             // 
             // label13
             // 
@@ -1123,6 +1207,7 @@
             c5Bas.Name = "c5Bas";
             c5Bas.Size = new Size(62, 27);
             c5Bas.TabIndex = 0;
+            c5Bas.Text = "00";
             // 
             // c5Bit
             // 
@@ -1131,6 +1216,7 @@
             c5Bit.Name = "c5Bit";
             c5Bit.Size = new Size(63, 27);
             c5Bit.TabIndex = 1;
+            c5Bit.Text = "00";
             // 
             // tableLayoutPanel37
             // 
@@ -1154,6 +1240,7 @@
             c4Bas.Name = "c4Bas";
             c4Bas.Size = new Size(62, 27);
             c4Bas.TabIndex = 0;
+            c4Bas.Text = "00";
             // 
             // c4Bit
             // 
@@ -1162,6 +1249,7 @@
             c4Bit.Name = "c4Bit";
             c4Bit.Size = new Size(63, 27);
             c4Bit.TabIndex = 1;
+            c4Bit.Text = "00";
             // 
             // label16
             // 
@@ -1194,6 +1282,8 @@
             tableLayoutPanel17.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel17.Controls.Add(tableLayoutPanel39, 0, 0);
             tableLayoutPanel17.Controls.Add(label18, 1, 0);
+            tableLayoutPanel17.Controls.Add(opticturTxt, 0, 1);
+            tableLayoutPanel17.Controls.Add(label22, 1, 1);
             tableLayoutPanel17.Dock = DockStyle.Fill;
             tableLayoutPanel17.Location = new Point(296, 165);
             tableLayoutPanel17.Name = "tableLayoutPanel17";
@@ -1226,6 +1316,7 @@
             c6Bas.Name = "c6Bas";
             c6Bas.Size = new Size(62, 27);
             c6Bas.TabIndex = 0;
+            c6Bas.Text = "00";
             // 
             // c6Bit
             // 
@@ -1234,6 +1325,7 @@
             c6Bit.Name = "c6Bit";
             c6Bit.Size = new Size(63, 27);
             c6Bit.TabIndex = 1;
+            c6Bit.Text = "00";
             // 
             // label18
             // 
@@ -1246,6 +1338,23 @@
             label18.TabIndex = 3;
             label18.Text = "Cevap 6";
             label18.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // opticturTxt
+            // 
+            opticturTxt.Dock = DockStyle.Fill;
+            opticturTxt.Location = new Point(3, 58);
+            opticturTxt.Name = "opticturTxt";
+            opticturTxt.Size = new Size(137, 27);
+            opticturTxt.TabIndex = 4;
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Location = new Point(146, 55);
+            label22.Name = "label22";
+            label22.Size = new Size(84, 21);
+            label22.TabIndex = 5;
+            label22.Text = "Optik Adı";
             // 
             // tableLayoutPanel13
             // 
@@ -1269,15 +1378,27 @@
             // 
             tableLayoutPanel18.ColumnCount = 1;
             tableLayoutPanel18.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel18.Controls.Add(label21, 0, 1);
             tableLayoutPanel18.Dock = DockStyle.Fill;
             tableLayoutPanel18.Location = new Point(3, 3);
             tableLayoutPanel18.Name = "tableLayoutPanel18";
             tableLayoutPanel18.RowCount = 3;
-            tableLayoutPanel18.RowStyles.Add(new RowStyle(SizeType.Percent, 67.27273F));
-            tableLayoutPanel18.RowStyles.Add(new RowStyle(SizeType.Percent, 32.727272F));
+            tableLayoutPanel18.RowStyles.Add(new RowStyle(SizeType.Percent, 65.4545441F));
+            tableLayoutPanel18.RowStyles.Add(new RowStyle(SizeType.Percent, 34.5454559F));
             tableLayoutPanel18.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
             tableLayoutPanel18.Size = new Size(287, 156);
             tableLayoutPanel18.TabIndex = 0;
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Dock = DockStyle.Fill;
+            label21.Font = new Font("Century Gothic", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label21.Location = new Point(3, 72);
+            label21.Name = "label21";
+            label21.Size = new Size(281, 38);
+            label21.TabIndex = 0;
+            label21.Text = "Eğer ki listelenmiş optiklerde optik türünüz yer almıyorsa lütfen Mesaj kutularını doldurduktan sonra ilk olarak optik türünü eklemek için \"Optik Ekle\" butonuna tıklayınız.";
             // 
             // tableLayoutPanel19
             // 
@@ -1326,9 +1447,11 @@
             // label19
             // 
             label19.AutoSize = true;
+            label19.Dock = DockStyle.Fill;
+            label19.Font = new Font("Century Gothic", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
             label19.Location = new Point(3, 90);
             label19.Name = "label19";
-            label19.Size = new Size(249, 63);
+            label19.Size = new Size(281, 67);
             label19.TabIndex = 0;
             label19.Text = ".txt dosyasında yer almayan sütunlar için Text Kutularını boş bırakın.";
             // 
@@ -1345,6 +1468,7 @@
             Name = "opticTxt";
             Text = "Form1";
             FormClosing += opticTxt_FormClosing;
+            Load += opticTxt_Load;
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
@@ -1376,6 +1500,8 @@
             tableLayoutPanel24.ResumeLayout(false);
             tableLayoutPanel24.PerformLayout();
             tableLayoutPanel7.ResumeLayout(false);
+            tableLayoutPanel8.ResumeLayout(false);
+            tableLayoutPanel8.PerformLayout();
             tableLayoutPanel9.ResumeLayout(false);
             tableLayoutPanel10.ResumeLayout(false);
             tableLayoutPanel12.ResumeLayout(false);
@@ -1404,6 +1530,8 @@
             tableLayoutPanel39.ResumeLayout(false);
             tableLayoutPanel39.PerformLayout();
             tableLayoutPanel13.ResumeLayout(false);
+            tableLayoutPanel18.ResumeLayout(false);
+            tableLayoutPanel18.PerformLayout();
             tableLayoutPanel21.ResumeLayout(false);
             tableLayoutPanel21.PerformLayout();
             ResumeLayout(false);
@@ -1507,5 +1635,12 @@
         private Label label17;
         private Label label18;
         private Label label19;
+        private ComboBox opticCombo;
+        private Label label20;
+        private Button opticEkle;
+        private TextBox opticturTxt;
+        private Label label21;
+        private Label label22;
+        private Button button2;
     }
 }

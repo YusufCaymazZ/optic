@@ -1,7 +1,13 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Xml.Linq;
+using DocumentFormat.OpenXml.Bibliography;
 using DocumentFormat.OpenXml.Wordprocessing;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1;
+using System.Collections.Generic;
+using System.Data;
+
 public class DataCrud
 {
     private DatabaseConnection dbConnection;
@@ -52,6 +58,75 @@ public class DataCrud
             dbConnection.CloseConnection();
         }
     }
+    //opticTur Tablosu
+    public void AddOptic(string opticTur, int ogrNumBas=0, int ogrNumBit = 0, int ogrAdBas = 0, int ogrAdBit = 0,
+    int d1Bas = 0, int d1Bit = 0, int d2Bas = 0, int d2Bit = 0, int d3Bas = 0, int d3Bit = 0, int d4Bas = 0, int d4Bit = 0,
+    int d5Bas = 0, int d5Bit = 0, int d6Bas = 0, int d6Bit = 0, int c1Bas = 0, int c1Bit = 0, int c2Bas = 0, int c2Bit = 0,
+    int c3Bas = 0, int c3Bit = 0, int c4Bas = 0, int c4Bit = 0, int c5Bas = 0, int c5Bit = 0, int c6Bas = 0, int c6Bit = 0,
+    int oturumBas = 0, int oturumBit = 0, int grupBas = 0, int grupBit = 0, int kitapcikBas = 0, int kitapcikBit = 0,
+    int durumBas = 0, int durumBit = 0)
+    {
+        try
+        {
+            dbConnection.OpenConnection();
+            string query = $"INSERT INTO optictur (opticTur, ogrNumBas, ogrNumBit, ogrAdBas, ogrAdBit, " +
+                $"d1Bas, d1Bit, d2Bas, d2Bit, d3Bas, d3Bit, d4Bas, d4Bit, d5Bas, d5Bit, d6Bas, d6Bit, " +
+                $"c1Bas, c1Bit, c2Bas, c2Bit, c3Bas, c3Bit, c4Bas, c4Bit, c5Bas, c5Bit, c6Bas, c6Bit, " +
+                $"oturumBas, oturumBit, grupBas, grupBit, kitapcikBas, kitapcikBit, durumBas, durumBit) " +
+                $"VALUES (@opticTur, @ogrNumBas, @ogrNumBit, @ogrAdBas, @ogrAdBit, @d1Bas, @d1Bit, @d2Bas, @d2Bit, @d3Bas, @d3Bit, " +
+                $"@d4Bas, @d4Bit, @d5Bas, @d5Bit, @d6Bas, @d6Bit, @c1Bas, @c1Bit, @c2Bas, @c2Bit, @c3Bas, @c3Bit, @c4Bas, @c4Bit, " +
+                $"@c5Bas, @c5Bit, @c6Bas, @c6Bit, @oturumBas, @oturumBit, @grupBas, @grupBit, @kitapcikBas, @kitapcikBit, @durumBas, @durumBit)";
+
+            MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection());
+            cmd.Parameters.AddWithValue("@opticTur", opticTur);
+            cmd.Parameters.AddWithValue("@ogrNumBas", ogrNumBas);
+            cmd.Parameters.AddWithValue("@ogrNumBit", ogrNumBit);
+            cmd.Parameters.AddWithValue("@ogrAdBas", ogrAdBas);
+            cmd.Parameters.AddWithValue("@ogrAdBit", ogrAdBit);
+            cmd.Parameters.AddWithValue("@d1Bas", d1Bas);
+            cmd.Parameters.AddWithValue("@d1Bit", d1Bit);
+            cmd.Parameters.AddWithValue("@d2Bas", d2Bas);
+            cmd.Parameters.AddWithValue("@d2Bit", d2Bit);
+            cmd.Parameters.AddWithValue("@d3Bas", d3Bas);
+            cmd.Parameters.AddWithValue("@d3Bit", d3Bit);
+            cmd.Parameters.AddWithValue("@d4Bas", d4Bas);
+            cmd.Parameters.AddWithValue("@d4Bit", d4Bit);
+            cmd.Parameters.AddWithValue("@d5Bas", d5Bas);
+            cmd.Parameters.AddWithValue("@d5Bit", d5Bit);
+            cmd.Parameters.AddWithValue("@d6Bas", d6Bas);
+            cmd.Parameters.AddWithValue("@d6Bit", d6Bit);
+            cmd.Parameters.AddWithValue("@c1Bas", c1Bas);
+            cmd.Parameters.AddWithValue("@c1Bit", c1Bit);
+            cmd.Parameters.AddWithValue("@c2Bas", c2Bas);
+            cmd.Parameters.AddWithValue("@c2Bit", c2Bit);
+            cmd.Parameters.AddWithValue("@c3Bas", c3Bas);
+            cmd.Parameters.AddWithValue("@c3Bit", c3Bit);
+            cmd.Parameters.AddWithValue("@c4Bas", c4Bas);
+            cmd.Parameters.AddWithValue("@c4Bit", c4Bit);
+            cmd.Parameters.AddWithValue("@c5Bas", c5Bas);
+            cmd.Parameters.AddWithValue("@c5Bit", c5Bit);
+            cmd.Parameters.AddWithValue("@c6Bas", c6Bas);
+            cmd.Parameters.AddWithValue("@c6Bit", c6Bit);
+            cmd.Parameters.AddWithValue("@oturumBas", oturumBas);
+            cmd.Parameters.AddWithValue("@oturumBit", oturumBit);
+            cmd.Parameters.AddWithValue("@grupBas", grupBas);
+            cmd.Parameters.AddWithValue("@grupBit", grupBit);
+            cmd.Parameters.AddWithValue("@kitapcikBas", kitapcikBas);
+            cmd.Parameters.AddWithValue("@kitapcikBit", kitapcikBit);
+            cmd.Parameters.AddWithValue("@durumBas", durumBas);
+            cmd.Parameters.AddWithValue("@durumBit", durumBit);
+            cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Optik kaydı ekleme sırasında bir hata oluştu: {ex.Message}");
+        }
+        finally
+        {
+            dbConnection.CloseConnection();
+        }
+    }
+
     //sonuclar tablosu
     public void AddSonuc(string ogr_num, string ogr_isim, string net, string puan, string cevap, string oturum, string grup, string ders_kodu, string girmedi)
     {
@@ -238,6 +313,103 @@ public class DataCrud
 
         return data;
     }
+
+    public List<int> GetIntColumns(string opticTur)
+    {
+        List<int> results = new List<int>();
+        try
+        {
+            dbConnection.OpenConnection();
+            // Burada int sütunları manuel olarak belirtiyoruz.
+            string query = "SELECT ogrNumBas, ogrNumBit, ogrAdBas, ogrAdBit, d1Bas, d1Bit, d2Bas, d2Bit, d3Bas, d3Bit, d4Bas, d4Bit, d5Bas, d5Bit, d6Bas, d6Bit, c1Bas, c1Bit, c2Bas, c2Bit, c3Bas, c3Bit, c4Bas, c4Bit, c5Bas, c5Bit, c6Bas, c6Bit, oturumBas, oturumBit, grupBas, grupBit, kitapcikBas, kitapcikBit, durumBas, durumBit FROM optictxt WHERE opticTur = @opticTur";
+            MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection());
+            cmd.Parameters.AddWithValue("@opticTur", opticTur);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                results.Add(reader.GetInt32("ogrNumBas"));
+                results.Add(reader.GetInt32("ogrNumBit"));
+                results.Add(reader.GetInt32("ogrAdBas"));
+                results.Add(reader.GetInt32("ogrAdBit"));
+                results.Add(reader.GetInt32("d1Bas"));
+                results.Add(reader.GetInt32("d1Bit"));
+                results.Add(reader.GetInt32("d2Bas"));
+                results.Add(reader.GetInt32("d2Bit"));
+                results.Add(reader.GetInt32("d3Bas"));
+                results.Add(reader.GetInt32("d3Bit"));
+                results.Add(reader.GetInt32("d4Bas"));
+                results.Add(reader.GetInt32("d4Bit"));
+                results.Add(reader.GetInt32("d5Bas"));
+                results.Add(reader.GetInt32("d5Bit"));
+                results.Add(reader.GetInt32("d6Bas"));
+                results.Add(reader.GetInt32("d6Bit"));
+                results.Add(reader.GetInt32("c1Bas"));
+                results.Add(reader.GetInt32("c1Bit"));
+                results.Add(reader.GetInt32("c2Bas"));
+                results.Add(reader.GetInt32("c2Bit"));
+                results.Add(reader.GetInt32("c3Bas"));
+                results.Add(reader.GetInt32("c3Bit"));
+                results.Add(reader.GetInt32("c4Bas"));
+                results.Add(reader.GetInt32("c4Bit"));
+                results.Add(reader.GetInt32("c5Bas"));
+                results.Add(reader.GetInt32("c5Bit"));
+                results.Add(reader.GetInt32("c6Bas"));
+                results.Add(reader.GetInt32("c6Bit"));
+                results.Add(reader.GetInt32("oturumBas"));
+                results.Add(reader.GetInt32("oturumBit"));
+                results.Add(reader.GetInt32("grupBas"));
+                results.Add(reader.GetInt32("grupBit"));
+                results.Add(reader.GetInt32("kitapcikBas"));
+                results.Add(reader.GetInt32("kitapcikBit"));
+                results.Add(reader.GetInt32("durumBas"));
+                results.Add(reader.GetInt32("durumBit"));
+            }
+            reader.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Veri çekme sırasında bir hata oluştu: {ex.Message}");
+        }
+        finally
+        {
+            dbConnection.CloseConnection();
+        }
+        return results;
+    }
+
+
+    public List<string> GetOpticTurValues()
+    {
+        List<string> opticTurValues = new List<string>();
+        try
+        {
+            dbConnection.OpenConnection();
+            string query = "SELECT opticTur FROM optictur";
+            MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection());
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                opticTurValues.Add(reader["opticTur"].ToString());
+            }
+            reader.Close();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Veri çekme sırasında bir hata oluştu: {ex.Message}");
+        }
+        finally
+        {
+            dbConnection.CloseConnection();
+        }
+        return opticTurValues;
+    }
+
+    public void deleteItem()
+    {
+
+    }
+
+
 
 
 
