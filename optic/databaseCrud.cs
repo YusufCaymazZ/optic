@@ -7,6 +7,7 @@ using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1;
 using System.Collections.Generic;
 using System.Data;
+using MongoDB.Driver.Core.Configuration;
 
 public class DataCrud
 {
@@ -128,7 +129,8 @@ public class DataCrud
     }
 
     //sonuclar tablosu
-    public void AddSonuc(string ogr_num, string ogr_isim, string net, string puan, string cevap, string oturum, string grup, string ders_kodu, string girmedi)
+    public void AddSonuc(string ogr_num, string ogr_isim, string net, string puan, string cevap, string oturum, 
+        string grup, string ders_kodu, string girmedi)
     {
         try
         {
@@ -321,7 +323,11 @@ public class DataCrud
         {
             dbConnection.OpenConnection();
             // Burada int sütunları manuel olarak belirtiyoruz.
-            string query = "SELECT ogrNumBas, ogrNumBit, ogrAdBas, ogrAdBit, d1Bas, d1Bit, d2Bas, d2Bit, d3Bas, d3Bit, d4Bas, d4Bit, d5Bas, d5Bit, d6Bas, d6Bit, c1Bas, c1Bit, c2Bas, c2Bit, c3Bas, c3Bit, c4Bas, c4Bit, c5Bas, c5Bit, c6Bas, c6Bit, oturumBas, oturumBit, grupBas, grupBit, kitapcikBas, kitapcikBit, durumBas, durumBit FROM optictxt WHERE opticTur = @opticTur";
+            string query = "SELECT ogrNumBas, ogrNumBit, ogrAdBas, ogrAdBit, d1Bas, d1Bit, d2Bas, " +
+                "d2Bit, d3Bas, d3Bit, d4Bas, d4Bit, d5Bas, d5Bit, d6Bas, d6Bit, c1Bas, c1Bit, c2Bas, " +
+                "c2Bit, c3Bas, c3Bit, c4Bas, c4Bit, c5Bas, c5Bit, c6Bas, c6Bit, oturumBas, oturumBit, " +
+                "grupBas, grupBit, kitapcikBas, kitapcikBit, durumBas, durumBit " +
+                "FROM optictur WHERE opticTur = @opticTur";
             MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection());
             cmd.Parameters.AddWithValue("@opticTur", opticTur);
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -365,6 +371,10 @@ public class DataCrud
                 results.Add(reader.GetInt32("durumBit"));
             }
             reader.Close();
+            foreach (var item in results)
+            {
+                MessageBox.Show($"{item}");
+            }
         }
         catch (Exception ex)
         {
@@ -404,10 +414,104 @@ public class DataCrud
         return opticTurValues;
     }
 
-    public void deleteItem()
+    public void InsertDataIntoDatabase(DataTable dataTable)
     {
+        try
+        {
+            dbConnection.OpenConnection();
+            string query = @"
+                INSERT INTO ogrlist (ders_kodu, ogr_no, ogr_isim, ogr_soyad)
+                VALUES (@ders_kodu, @ogr_no, @ogr_isim, @ogr_soyad)
+                ON DUPLICATE KEY UPDATE
+                ders_kodu = VALUES(ders_kodu),
+                ogr_isim = VALUES(ogr_isim),
+                ogr_soyad = VALUES(ogr_soyad)";
+            MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection());//SYNTAXI DÜZELT
 
+            foreach (DataRow row in dataTable.Rows)
+            {
+                {
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@ogr_no", row["ogrno"]);
+                    cmd.Parameters.AddWithValue("@ogr_isim", row["ogrisim"]);
+                    cmd.Parameters.AddWithValue("@ogr_soyad", row["ogrsoyad"]);
+                    cmd.Parameters.AddWithValue("@ders_kodu", row["derskodu"]);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            MessageBox.Show("Veriler başarıyla kaydedildi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            dbConnection.CloseConnection();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
     }
+
+    public void DeleteRecordsByCourseCode(string dersKodu)
+    {
+        try
+        {
+            dbConnection.OpenConnection();
+            string query = "DELETE FROM ogrlist WHERE ders_kodu = @ders_kodu";
+            MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection());//SYNTAXI DÜZELT
+            cmd.Parameters.AddWithValue("@ders_kodu", dersKodu);
+            int affectedRows = cmd.ExecuteNonQuery();
+
+            if (affectedRows > 0)
+            {
+                MessageBox.Show($"{affectedRows} kayıt başarıyla silindi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Belirtilen ders koduna ait kayıt bulunamadı.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            dbConnection.CloseConnection();
+
+
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.ToString());
+            throw;
+        }
+    }
+
+    public DataTable GetogrListDataGrid()
+    {
+        string query = "SELECT * FROM ogrlist"; // Tablo adı veya sorguyu ihtiyacınıza göre değiştirin
+
+        DataTable dataTable = new DataTable();
+
+        try
+        {
+            dbConnection.OpenConnection();
+            using (MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection()))
+            {
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    // Verileri DataTable'a doldurun
+                    adapter.Fill(dataTable);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            // Hata durumunda Exception fırlat
+            throw new Exception("Veri yüklenirken bir hata oluştu: " + ex.Message);
+        }
+        finally
+        {
+            dbConnection.CloseConnection();
+        }
+
+        return dataTable;
+    }
+
+
+
+
+
 
 
 

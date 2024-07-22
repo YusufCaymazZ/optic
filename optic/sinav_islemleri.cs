@@ -85,10 +85,6 @@ namespace optic
             this.Controls.Add(HandledUsers);
         }
 
-        private void txtButton_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void optic_txt_Click(object sender, EventArgs e)
         {
@@ -165,6 +161,11 @@ namespace optic
             {
                 MessageBox.Show("data is null");
             }
+        }
+
+        private void textBox2_Click(object sender, EventArgs e)
+        {
+            textBox2.Text = string.Empty;
         }
     }
 }

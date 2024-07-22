@@ -173,6 +173,7 @@
             textBox2.TabIndex = 1;
             textBox2.Text = "Numara giriniz.";
             textBox2.TextAlign = HorizontalAlignment.Center;
+            textBox2.Click += textBox2_Click;
             // 
             // tableLayoutPanel10
             // 
@@ -190,7 +191,7 @@
             // 
             // optic_txt
             // 
-            optic_txt.Dock = DockStyle.Fill;
+            optic_txt.Dock = DockStyle.Bottom;
             optic_txt.Location = new Point(534, 93);
             optic_txt.Name = "optic_txt";
             optic_txt.Size = new Size(161, 43);

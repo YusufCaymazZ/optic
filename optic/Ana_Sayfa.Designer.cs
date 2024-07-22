@@ -59,6 +59,7 @@
             ders_btn.TabIndex = 0;
             ders_btn.Text = "Ders İşlemleri";
             ders_btn.UseVisualStyleBackColor = true;
+            ders_btn.Click += ders_btn_Click;
             // 
             // sinav_btn
             // 

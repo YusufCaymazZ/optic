@@ -3,12 +3,14 @@ using System.Text;
 using System.Data;
 using System.Data.Common;
 using MySql.Data.MySqlClient;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
+using System.Collections.Generic;
 
 namespace optic
 {
     public partial class opticTxt : Form
     {
-        List<Int32> dt = new List<Int32>();
+        List<int> dt = new List<int>();
         private string opticTuru;
         private int ogrnumBasi = 0;
         private int ogrisimBasi = 0;
@@ -67,17 +69,10 @@ namespace optic
         private string kitapcik = null;
         private string durum = null;
 
-
-
-
-
-
-
-
         DatabaseConnection db;
         DataCrud data;
         string filePath;
-        string[] lines;
+        string[] lines = null;
         public opticTxt(DatabaseConnection db)
         {
             InitializeComponent();
@@ -114,6 +109,12 @@ namespace optic
                     filePath = openFileDialog.FileName;
                     lines = ReadFileLines(filePath);
                     MessageBox.Show(lines[1]);
+
+                    string selectedItem = opticCombo.SelectedItem.ToString();
+                    dt = data.GetIntColumns(selectedItem);
+                    int[] newdt =  dt.ToArray();
+                    BasBitEvent(lines, newdt);
+
                     // Dosya yolu ile yapýlacak iþlemler
                 }
             }
@@ -189,13 +190,6 @@ namespace optic
                         linesList.Add(line);
                     }
                 }
-                if (opticCombo.SelectedIndex != -1)
-                {
-                    string selectedItem = opticCombo.SelectedItem.ToString();
-                    dt = data.GetIntColumns(selectedItem);
-                    BasBitEvent(linesList, dt);
-                }
-
             }
             catch (Exception e)
             {
@@ -207,16 +201,16 @@ namespace optic
 
         private string GetSubstring(string input, int startIndex, int endIndex)
         {
-            if (input == null)
+            /*if (input == null)
                 throw new ArgumentNullException(nameof(input));
             if (startIndex < 0 || startIndex >= input.Length)
                 throw new ArgumentOutOfRangeException(nameof(startIndex));
             if (endIndex < 0 || endIndex > input.Length)
                 throw new ArgumentOutOfRangeException(nameof(endIndex));
             if (startIndex > endIndex)
-                throw new ArgumentException("startIndex cannot be greater than endIndex");
+                throw new ArgumentException("startIndex cannot be greater than endIndex");*/
 
-            return input.Substring(startIndex, endIndex - startIndex);
+            return input.Substring(startIndex, endIndex);
         }
 
         public void PopulateComboBox(ComboBox comboBox)
@@ -228,8 +222,14 @@ namespace optic
                 comboBox.Items.Add(value);
             }
         }
-        public void BasBitEvent(List<string> linesList, List<Int32> dt)
+        public void BasBitEvent(string[] linesList, int[] dt)
         {
+            if (dt.Length > 36 && dt.Length < 36)
+            {
+                throw new ArgumentException("dt listesi 36 eleman olmalýdýr.");
+            }
+            int value;
+            MessageBox.Show($"Index uzunluðu = {dt.Length}");
             foreach (string line in linesList)
             {
                 ogrnum = GetSubstring(line, dt[0], dt[1]);

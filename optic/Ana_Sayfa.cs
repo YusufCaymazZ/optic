@@ -26,5 +26,13 @@ namespace optic
         {
             Application.Exit();
         }
+
+        private void ders_btn_Click(object sender, EventArgs e)
+        {
+            DatabaseConnection conn = new DatabaseConnection();
+            DersIslemleri ders = new DersIslemleri(conn);
+            ders.Show();
+            this.Hide();
+        }
     }
 }

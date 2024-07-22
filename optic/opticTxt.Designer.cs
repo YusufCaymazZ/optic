@@ -249,7 +249,7 @@
             d4Bas.Name = "d4Bas";
             d4Bas.Size = new Size(62, 27);
             d4Bas.TabIndex = 0;
-            d4Bas.Text = "00";
+            d4Bas.Text = "0";
             // 
             // d4Bit
             // 
@@ -258,7 +258,7 @@
             d4Bit.Name = "d4Bit";
             d4Bit.Size = new Size(63, 27);
             d4Bit.TabIndex = 1;
-            d4Bit.Text = "00";
+            d4Bit.Text = "0";
             // 
             // tableLayoutPanel30
             // 
@@ -282,7 +282,7 @@
             d3Bas.Name = "d3Bas";
             d3Bas.Size = new Size(62, 27);
             d3Bas.TabIndex = 0;
-            d3Bas.Text = "00";
+            d3Bas.Text = "0";
             // 
             // d3Bit
             // 
@@ -291,7 +291,7 @@
             d3Bit.Name = "d3Bit";
             d3Bit.Size = new Size(63, 27);
             d3Bit.TabIndex = 1;
-            d3Bit.Text = "00";
+            d3Bit.Text = "0";
             // 
             // tableLayoutPanel29
             // 
@@ -315,7 +315,7 @@
             d2Bas.Name = "d2Bas";
             d2Bas.Size = new Size(62, 27);
             d2Bas.TabIndex = 0;
-            d2Bas.Text = "00";
+            d2Bas.Text = "0";
             // 
             // d2Bit
             // 
@@ -324,7 +324,7 @@
             d2Bit.Name = "d2Bit";
             d2Bit.Size = new Size(63, 27);
             d2Bit.TabIndex = 1;
-            d2Bit.Text = "00";
+            d2Bit.Text = "0";
             // 
             // label8
             // 
@@ -403,7 +403,7 @@
             d1Bas.Name = "d1Bas";
             d1Bas.Size = new Size(62, 27);
             d1Bas.TabIndex = 0;
-            d1Bas.Text = "00";
+            d1Bas.Text = "0";
             // 
             // d1Bit
             // 
@@ -412,7 +412,7 @@
             d1Bit.Name = "d1Bit";
             d1Bit.Size = new Size(63, 27);
             d1Bit.TabIndex = 1;
-            d1Bit.Text = "00";
+            d1Bit.Text = "0";
             // 
             // tableLayoutPanel27
             // 
@@ -436,7 +436,7 @@
             durumBas.Name = "durumBas";
             durumBas.Size = new Size(62, 27);
             durumBas.TabIndex = 0;
-            durumBas.Text = "00";
+            durumBas.Text = "0";
             // 
             // durumBit
             // 
@@ -445,7 +445,7 @@
             durumBit.Name = "durumBit";
             durumBit.Size = new Size(63, 27);
             durumBit.TabIndex = 1;
-            durumBit.Text = "00";
+            durumBit.Text = "0";
             // 
             // label6
             // 
@@ -512,7 +512,7 @@
             ogrNumBas.Name = "ogrNumBas";
             ogrNumBas.Size = new Size(60, 27);
             ogrNumBas.TabIndex = 0;
-            ogrNumBas.Text = "00";
+            ogrNumBas.Text = "0";
             // 
             // ogrNumBit
             // 
@@ -521,7 +521,7 @@
             ogrNumBit.Name = "ogrNumBit";
             ogrNumBit.Size = new Size(65, 27);
             ogrNumBit.TabIndex = 1;
-            ogrNumBit.Text = "00";
+            ogrNumBit.Text = "0";
             // 
             // tableLayoutPanel22
             // 
@@ -545,7 +545,7 @@
             ogrAdBas.Name = "ogrAdBas";
             ogrAdBas.Size = new Size(62, 27);
             ogrAdBas.TabIndex = 0;
-            ogrAdBas.Text = "00";
+            ogrAdBas.Text = "0";
             // 
             // ogrAdBit
             // 
@@ -554,7 +554,7 @@
             ogrAdBit.Name = "ogrAdBit";
             ogrAdBit.Size = new Size(63, 27);
             ogrAdBit.TabIndex = 1;
-            ogrAdBit.Text = "00";
+            ogrAdBit.Text = "0";
             // 
             // label1
             // 
@@ -623,7 +623,7 @@
             KitapcikBas.Name = "KitapcikBas";
             KitapcikBas.Size = new Size(62, 27);
             KitapcikBas.TabIndex = 0;
-            KitapcikBas.Text = "00";
+            KitapcikBas.Text = "0";
             // 
             // KitapcikBit
             // 
@@ -632,7 +632,7 @@
             KitapcikBit.Name = "KitapcikBit";
             KitapcikBit.Size = new Size(63, 27);
             KitapcikBit.TabIndex = 1;
-            KitapcikBit.Text = "00";
+            KitapcikBit.Text = "0";
             // 
             // tableLayoutPanel25
             // 
@@ -656,7 +656,7 @@
             grupBas.Name = "grupBas";
             grupBas.Size = new Size(62, 27);
             grupBas.TabIndex = 0;
-            grupBas.Text = "00";
+            grupBas.Text = "0";
             // 
             // grupBit
             // 
@@ -665,7 +665,7 @@
             grupBit.Name = "grupBit";
             grupBit.Size = new Size(63, 27);
             grupBit.TabIndex = 1;
-            grupBit.Text = "00";
+            grupBit.Text = "0";
             // 
             // tableLayoutPanel24
             // 
@@ -689,7 +689,7 @@
             oturumBas.Name = "oturumBas";
             oturumBas.Size = new Size(62, 27);
             oturumBas.TabIndex = 0;
-            oturumBas.Text = "00";
+            oturumBas.Text = "0";
             // 
             // oturumBit
             // 
@@ -698,7 +698,7 @@
             oturumBit.Name = "oturumBit";
             oturumBit.Size = new Size(63, 27);
             oturumBit.TabIndex = 1;
-            oturumBit.Text = "00";
+            oturumBit.Text = "0";
             // 
             // label3
             // 
@@ -942,7 +942,7 @@
             d6Bas.Name = "d6Bas";
             d6Bas.Size = new Size(62, 27);
             d6Bas.TabIndex = 0;
-            d6Bas.Text = "00";
+            d6Bas.Text = "0";
             // 
             // d6Bit
             // 
@@ -951,7 +951,7 @@
             d6Bit.Name = "d6Bit";
             d6Bit.Size = new Size(63, 27);
             d6Bit.TabIndex = 1;
-            d6Bit.Text = "00";
+            d6Bit.Text = "0";
             // 
             // tableLayoutPanel32
             // 
@@ -975,7 +975,7 @@
             d5Bas.Name = "d5Bas";
             d5Bas.Size = new Size(62, 27);
             d5Bas.TabIndex = 0;
-            d5Bas.Text = "00";
+            d5Bas.Text = "0";
             // 
             // d5Bit
             // 
@@ -984,7 +984,7 @@
             d5Bit.Name = "d5Bit";
             d5Bit.Size = new Size(63, 27);
             d5Bit.TabIndex = 1;
-            d5Bit.Text = "00";
+            d5Bit.Text = "0";
             // 
             // label11
             // 
@@ -1053,7 +1053,7 @@
             c3Bas.Name = "c3Bas";
             c3Bas.Size = new Size(62, 27);
             c3Bas.TabIndex = 0;
-            c3Bas.Text = "00";
+            c3Bas.Text = "0";
             // 
             // c3Bit
             // 
@@ -1086,7 +1086,7 @@
             c2Bas.Name = "c2Bas";
             c2Bas.Size = new Size(62, 27);
             c2Bas.TabIndex = 0;
-            c2Bas.Text = "00";
+            c2Bas.Text = "0";
             // 
             // c2Bit
             // 
@@ -1095,7 +1095,7 @@
             c2Bit.Name = "c2Bit";
             c2Bit.Size = new Size(63, 27);
             c2Bit.TabIndex = 1;
-            c2Bit.Text = "00";
+            c2Bit.Text = "0";
             // 
             // tableLayoutPanel34
             // 
@@ -1119,7 +1119,7 @@
             c1Bas.Name = "c1Bas";
             c1Bas.Size = new Size(62, 27);
             c1Bas.TabIndex = 0;
-            c1Bas.Text = "00";
+            c1Bas.Text = "0";
             // 
             // c1Bit
             // 
@@ -1128,7 +1128,7 @@
             c1Bit.Name = "c1Bit";
             c1Bit.Size = new Size(63, 27);
             c1Bit.TabIndex = 1;
-            c1Bit.Text = "00";
+            c1Bit.Text = "0";
             // 
             // label13
             // 
@@ -1207,7 +1207,7 @@
             c5Bas.Name = "c5Bas";
             c5Bas.Size = new Size(62, 27);
             c5Bas.TabIndex = 0;
-            c5Bas.Text = "00";
+            c5Bas.Text = "0";
             // 
             // c5Bit
             // 
@@ -1216,7 +1216,7 @@
             c5Bit.Name = "c5Bit";
             c5Bit.Size = new Size(63, 27);
             c5Bit.TabIndex = 1;
-            c5Bit.Text = "00";
+            c5Bit.Text = "0";
             // 
             // tableLayoutPanel37
             // 
@@ -1240,7 +1240,7 @@
             c4Bas.Name = "c4Bas";
             c4Bas.Size = new Size(62, 27);
             c4Bas.TabIndex = 0;
-            c4Bas.Text = "00";
+            c4Bas.Text = "0";
             // 
             // c4Bit
             // 
@@ -1249,7 +1249,7 @@
             c4Bit.Name = "c4Bit";
             c4Bit.Size = new Size(63, 27);
             c4Bit.TabIndex = 1;
-            c4Bit.Text = "00";
+            c4Bit.Text = "0";
             // 
             // label16
             // 
@@ -1316,7 +1316,7 @@
             c6Bas.Name = "c6Bas";
             c6Bas.Size = new Size(62, 27);
             c6Bas.TabIndex = 0;
-            c6Bas.Text = "00";
+            c6Bas.Text = "0";
             // 
             // c6Bit
             // 
@@ -1325,7 +1325,7 @@
             c6Bit.Name = "c6Bit";
             c6Bit.Size = new Size(63, 27);
             c6Bit.TabIndex = 1;
-            c6Bit.Text = "00";
+            c6Bit.Text = "0";
             // 
             // label18
             // 
