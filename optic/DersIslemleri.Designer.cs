@@ -199,7 +199,7 @@
             ogrGetirTxt.Size = new Size(327, 27);
             ogrGetirTxt.TabIndex = 8;
             ogrGetirTxt.Text = "Getirilecek öğrencinin numarasını buraya yazınız.";
-            ogrGetirTxt.TextChanged += textBox7_Click;
+            ogrGetirTxt.Click += ogrGetirTxt_Click;
             // 
             // ogr_num
             // 

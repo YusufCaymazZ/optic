@@ -46,10 +46,7 @@ namespace optic
             this.Hide();
         }
 
-        private void textBox7_Click(object sender, EventArgs e)
-        {
-            ogrGetirTxt.Text = string.Empty;
-        }
+
 
         private void ogrListele_Click(object sender, EventArgs e)
         {
@@ -77,6 +74,25 @@ namespace optic
 
         private void ogrGetirBtn_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // Verileri DataGridView'a yükle
+                DataTable dataTable = data.GetOneOgrListDataGrid(ogrGetirTxt.Text);
+                ogrDataGrid.DataSource = dataTable;
+                if (ogrDataGrid.Columns.Count > 0)
+                {
+                    ogrDataGrid.Columns[0].HeaderText = "Ders Kodu";
+                    ogrDataGrid.Columns[1].HeaderText = "Öğrenci No";
+                    ogrDataGrid.Columns[2].HeaderText = "Öğrenci İsim";
+                    ogrDataGrid.Columns[3].HeaderText = "Öğrenci Soyisim";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // Hata durumunda mesaj kutusu göster
+                MessageBox.Show(ex.Message);
+            }
 
         }
 
@@ -154,7 +170,7 @@ namespace optic
 
         }
 
-        
+
 
         private void ogrListSil_Click(object sender, EventArgs e)
         {
@@ -179,7 +195,9 @@ namespace optic
             }
         }
 
-
-
+        private void ogrGetirTxt_Click(object sender, EventArgs e)
+        {
+            ogrGetirTxt.Text = string.Empty;    
+        }
     }
 }

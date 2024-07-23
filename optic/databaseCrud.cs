@@ -508,6 +508,37 @@ public class DataCrud
         return dataTable;
     }
 
+    public DataTable GetOneOgrListDataGrid(String num)
+    {
+        string query = $"SELECT * FROM ogrlist WHERE ogr_no={num}"; // Tablo adı veya sorguyu ihtiyacınıza göre değiştirin
+
+        DataTable dataTable = new DataTable();
+
+        try
+        {
+            dbConnection.OpenConnection();
+            using (MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection()))
+            {
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    // Verileri DataTable'a doldurun
+                    adapter.Fill(dataTable);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            // Hata durumunda Exception fırlat
+            throw new Exception("Veri yüklenirken bir hata oluştu: " + ex.Message);
+        }
+        finally
+        {
+            dbConnection.CloseConnection();
+        }
+
+        return dataTable;
+    }
+
 
 
 
