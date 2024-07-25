@@ -46,18 +46,19 @@
             ogrDersKoduTxt = new TextBox();
             ogrListSil = new Button();
             tableLayoutPanel8 = new TableLayoutPanel();
-            button1 = new Button();
-            button2 = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            dersListele = new Button();
+            dersGetir = new Button();
+            dersKodu = new TextBox();
+            programAdi = new TextBox();
+            dersAdi = new TextBox();
             label2 = new Label();
             label3 = new Label();
             label1 = new Label();
             getirilecekDers = new TextBox();
-            button3 = new Button();
+            dersEkle = new Button();
             dersExcell = new Button();
             geriButton = new Button();
+            dersSilButton = new Button();
             dataGridView1 = new DataGridView();
             ogrDataGrid = new DataGridView();
             openFileDialog1 = new OpenFileDialog();
@@ -269,18 +270,19 @@
             tableLayoutPanel8.ColumnCount = 2;
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60.06826F));
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 39.93174F));
-            tableLayoutPanel8.Controls.Add(button1, 1, 0);
-            tableLayoutPanel8.Controls.Add(button2, 1, 1);
-            tableLayoutPanel8.Controls.Add(textBox1, 1, 2);
-            tableLayoutPanel8.Controls.Add(textBox2, 1, 3);
-            tableLayoutPanel8.Controls.Add(textBox3, 1, 4);
+            tableLayoutPanel8.Controls.Add(dersListele, 1, 0);
+            tableLayoutPanel8.Controls.Add(dersGetir, 1, 1);
+            tableLayoutPanel8.Controls.Add(dersKodu, 1, 2);
+            tableLayoutPanel8.Controls.Add(programAdi, 1, 3);
+            tableLayoutPanel8.Controls.Add(dersAdi, 1, 4);
             tableLayoutPanel8.Controls.Add(label2, 0, 3);
             tableLayoutPanel8.Controls.Add(label3, 0, 4);
             tableLayoutPanel8.Controls.Add(label1, 0, 2);
             tableLayoutPanel8.Controls.Add(getirilecekDers, 0, 1);
-            tableLayoutPanel8.Controls.Add(button3, 1, 5);
+            tableLayoutPanel8.Controls.Add(dersEkle, 1, 5);
             tableLayoutPanel8.Controls.Add(dersExcell, 0, 6);
             tableLayoutPanel8.Controls.Add(geriButton, 1, 6);
+            tableLayoutPanel8.Controls.Add(dersSilButton, 0, 5);
             tableLayoutPanel8.Dock = DockStyle.Fill;
             tableLayoutPanel8.Location = new Point(3, 333);
             tableLayoutPanel8.Name = "tableLayoutPanel8";
@@ -297,49 +299,51 @@
             tableLayoutPanel8.Size = new Size(586, 325);
             tableLayoutPanel8.TabIndex = 3;
             // 
-            // button1
+            // dersListele
             // 
-            button1.Dock = DockStyle.Fill;
-            button1.Location = new Point(355, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(228, 34);
-            button1.TabIndex = 0;
-            button1.Text = "Listele";
-            button1.UseVisualStyleBackColor = true;
+            dersListele.Dock = DockStyle.Fill;
+            dersListele.Location = new Point(355, 3);
+            dersListele.Name = "dersListele";
+            dersListele.Size = new Size(228, 34);
+            dersListele.TabIndex = 0;
+            dersListele.Text = "Listele";
+            dersListele.UseVisualStyleBackColor = true;
+            dersListele.Click += dersListele_Click;
             // 
-            // button2
+            // dersGetir
             // 
-            button2.Dock = DockStyle.Fill;
-            button2.Location = new Point(355, 43);
-            button2.Name = "button2";
-            button2.Size = new Size(228, 33);
-            button2.TabIndex = 1;
-            button2.Text = "Dersi Getir";
-            button2.UseVisualStyleBackColor = true;
+            dersGetir.Dock = DockStyle.Fill;
+            dersGetir.Location = new Point(355, 43);
+            dersGetir.Name = "dersGetir";
+            dersGetir.Size = new Size(228, 33);
+            dersGetir.TabIndex = 1;
+            dersGetir.Text = "Dersi Getir";
+            dersGetir.UseVisualStyleBackColor = true;
+            dersGetir.Click += dersGetir_Click;
             // 
-            // textBox1
+            // dersKodu
             // 
-            textBox1.Dock = DockStyle.Fill;
-            textBox1.Location = new Point(355, 82);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(228, 27);
-            textBox1.TabIndex = 2;
+            dersKodu.Dock = DockStyle.Fill;
+            dersKodu.Location = new Point(355, 82);
+            dersKodu.Name = "dersKodu";
+            dersKodu.Size = new Size(228, 27);
+            dersKodu.TabIndex = 2;
             // 
-            // textBox2
+            // programAdi
             // 
-            textBox2.Dock = DockStyle.Fill;
-            textBox2.Location = new Point(355, 115);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(228, 27);
-            textBox2.TabIndex = 3;
+            programAdi.Dock = DockStyle.Fill;
+            programAdi.Location = new Point(355, 115);
+            programAdi.Name = "programAdi";
+            programAdi.Size = new Size(228, 27);
+            programAdi.TabIndex = 3;
             // 
-            // textBox3
+            // dersAdi
             // 
-            textBox3.Dock = DockStyle.Fill;
-            textBox3.Location = new Point(355, 151);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(228, 27);
-            textBox3.TabIndex = 4;
+            dersAdi.Dock = DockStyle.Fill;
+            dersAdi.Location = new Point(355, 151);
+            dersAdi.Name = "dersAdi";
+            dersAdi.Size = new Size(228, 27);
+            dersAdi.TabIndex = 4;
             // 
             // label2
             // 
@@ -384,15 +388,16 @@
             getirilecekDers.Text = "Getirilecek dersin kodunu buraya yazınız.";
             getirilecekDers.Click += textBox4_Click;
             // 
-            // button3
+            // dersEkle
             // 
-            button3.Dock = DockStyle.Fill;
-            button3.Location = new Point(355, 186);
-            button3.Name = "button3";
-            button3.Size = new Size(228, 42);
-            button3.TabIndex = 9;
-            button3.Text = "Ekle veya Güncelle";
-            button3.UseVisualStyleBackColor = true;
+            dersEkle.Dock = DockStyle.Fill;
+            dersEkle.Location = new Point(355, 186);
+            dersEkle.Name = "dersEkle";
+            dersEkle.Size = new Size(228, 42);
+            dersEkle.TabIndex = 9;
+            dersEkle.Text = "Ekle veya Güncelle";
+            dersEkle.UseVisualStyleBackColor = true;
+            dersEkle.Click += dersEkle_Click;
             // 
             // dersExcell
             // 
@@ -403,6 +408,7 @@
             dersExcell.TabIndex = 10;
             dersExcell.Text = "Ders Excell Ekle";
             dersExcell.UseVisualStyleBackColor = true;
+            dersExcell.Click += dersExcell_Click;
             // 
             // geriButton
             // 
@@ -414,6 +420,16 @@
             geriButton.Text = "Geri";
             geriButton.UseVisualStyleBackColor = true;
             geriButton.Click += geriButton_Click_1;
+            // 
+            // dersSilButton
+            // 
+            dersSilButton.Dock = DockStyle.Fill;
+            dersSilButton.Location = new Point(3, 186);
+            dersSilButton.Name = "dersSilButton";
+            dersSilButton.Size = new Size(346, 42);
+            dersSilButton.TabIndex = 12;
+            dersSilButton.Text = "Dersi Sil";
+            dersSilButton.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
@@ -466,16 +482,16 @@
         private TableLayoutPanel tableLayoutPanel6;
         private TableLayoutPanel tableLayoutPanel8;
         private DataGridView dataGridView1;
-        private Button button1;
-        private Button button2;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private Button dersListele;
+        private Button dersGetir;
+        private TextBox dersKodu;
+        private TextBox programAdi;
+        private TextBox dersAdi;
         private Label label2;
         private Label label3;
         private Label label1;
         private TextBox getirilecekDers;
-        private Button button3;
+        private Button dersEkle;
         private TableLayoutPanel tableLayoutPanel2;
         private OpenFileDialog openFileDialog1;
         private Button dersExcell;
@@ -496,5 +512,6 @@
         private Label label4;
         private TextBox ogrDersKoduTxt;
         private Button ogrListSil;
+        private Button dersSilButton;
     }
 }

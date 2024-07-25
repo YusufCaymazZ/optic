@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using ExcelDataReader;
+using ClosedXML.Excel;
 
 
 
@@ -133,39 +134,62 @@ namespace optic
             }
 
         }
-        private DataTable ReadExcelFile(string filePath, string dersKodu)
+        private DataTable ReadExcelFile(string filePath, string dersKodu = null)
         {
             DataTable dataTable = new DataTable();
-
-            using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
+            if (dersKodu != null)
             {
-                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
                 {
-                    var result = reader.AsDataSet(new ExcelDataSetConfiguration()
+                    using (var reader = ExcelReaderFactory.CreateReader(stream))
                     {
-                        ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
+                        var result = reader.AsDataSet(new ExcelDataSetConfiguration()
                         {
-                            UseHeaderRow = false
-                        }
-                    });
+                            ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
+                            {
+                                UseHeaderRow = false
+                            }
+                        });
 
-                    dataTable = result.Tables[0];
+                        dataTable = result.Tables[0];
+                    }
+                }
+
+                // Sütun adlarını manuel olarak ayarla
+                dataTable.Columns[0].ColumnName = "ogrno";
+                dataTable.Columns[1].ColumnName = "ogrisim";
+                dataTable.Columns[2].ColumnName = "ogrsoyad";
+
+                // Ders kodu sütununu ekle
+                dataTable.Columns.Add("derskodu", typeof(string));
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    row["derskodu"] = dersKodu;
                 }
             }
+            else {
+                using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    using (var reader = ExcelReaderFactory.CreateReader(stream))
+                    {
+                        var result = reader.AsDataSet(new ExcelDataSetConfiguration()
+                        {
+                            ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
+                            {
+                                UseHeaderRow = false
+                            }
+                        });
 
-            // Sütun adlarını manuel olarak ayarla
-            dataTable.Columns[0].ColumnName = "ogrno";
-            dataTable.Columns[1].ColumnName = "ogrisim";
-            dataTable.Columns[2].ColumnName = "ogrsoyad";
+                        dataTable = result.Tables[0];
+                    }
+                }
 
-            // Ders kodu sütununu ekle
-            dataTable.Columns.Add("derskodu", typeof(string));
+                // Sütun adlarını manuel olarak ayarla
+                dataTable.Columns[0].ColumnName = "derskodu";
+                dataTable.Columns[1].ColumnName = "programadi";
+                dataTable.Columns[2].ColumnName = "dersadi";
 
-            foreach (DataRow row in dataTable.Rows)
-            {
-                row["derskodu"] = dersKodu;
             }
-
             return dataTable;
 
         }
@@ -197,7 +221,47 @@ namespace optic
 
         private void ogrGetirTxt_Click(object sender, EventArgs e)
         {
-            ogrGetirTxt.Text = string.Empty;    
+            ogrGetirTxt.Text = string.Empty;
         }
+
+        private void dersListele_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dersGetir_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dersEkle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dersExcell_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Excel Files|*.xls;*.xlsx;*.xlsm"
+            };
+
+            if (openFileDialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            string filePath = openFileDialog.FileName;
+
+            // Excel dosyasını oku ve DataTable'a aktar
+            DataTable dataTable = ReadExcelFile(filePath);
+
+            // Veritabanına aktar
+            if (dataTable != null)
+            {
+                data.InsertOrUpdateCourse(dataTable);
+            }
+        }
+
+
+
     }
 }

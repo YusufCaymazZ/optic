@@ -541,6 +541,40 @@ public class DataCrud
 
 
 
+    public void InsertOrUpdateCourse(DataTable dataTable)
+    {
+        try
+        {
+            dbConnection.OpenConnection();
+            string query = @"
+                INSERT INTO dersler (dersKod, program, ders )
+                VALUES (@derskodu, @programadi, @dersadi)
+                ON DUPLICATE KEY UPDATE
+                dersKod = VALUES(dersKod),
+                program = VALUES(program),
+                ders = VALUES(ders)";
+            MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection());//SYNTAXI DÜZELT
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                {
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@derskodu", row["derskodu"]);
+                    cmd.Parameters.AddWithValue("@programadi", row["programadi"]);
+                    cmd.Parameters.AddWithValue("@dersadi", row["dersadi"]);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            MessageBox.Show("Veriler başarıyla kaydedildi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            dbConnection.CloseConnection();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+
 
 
 
