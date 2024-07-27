@@ -25,8 +25,8 @@ namespace optic
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             ogrDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ogrDataGrid.RowPostPaint += new DataGridViewRowPostPaintEventHandler(ogrDataGrid_RowPostPaint);
-
-
+            dersDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dersDataGrid.RowPostPaint += new DataGridViewRowPostPaintEventHandler(dersDataGrid_RowPostPaint);
         }
 
         private void textBox4_Click(object sender, EventArgs e)
@@ -167,7 +167,8 @@ namespace optic
                     row["derskodu"] = dersKodu;
                 }
             }
-            else {
+            else
+            {
                 using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
                 {
                     using (var reader = ExcelReaderFactory.CreateReader(stream))
@@ -219,6 +220,7 @@ namespace optic
             }
         }
 
+
         private void ogrGetirTxt_Click(object sender, EventArgs e)
         {
             ogrGetirTxt.Text = string.Empty;
@@ -226,12 +228,51 @@ namespace optic
 
         private void dersListele_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // Verileri DataGridView'a yükle
+                DataTable dataTable = data.GetdersListDataGrid();
+                dersDataGrid.DataSource = dataTable;
+                if (dersDataGrid.Columns.Count > 0)
+                {
+                    dersDataGrid.Columns[0].HeaderText = "ID";
+                    dersDataGrid.Columns[0].Visible = false;
+                    dersDataGrid.Columns[1].HeaderText = "Ders Kodu";
+                    dersDataGrid.Columns[2].HeaderText = "Program Adı";
+                    dersDataGrid.Columns[3].HeaderText = "Ders Adı";
+                }
 
+            }
+            catch (Exception ex)
+            {
+                // Hata durumunda mesaj kutusu göster
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void dersGetir_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // Verileri DataGridView'a yükle
+                DataTable dataTable = data.GetOneDersDataGrid(getirilecekDers.Text);
+                dersDataGrid.DataSource = dataTable;
+                if (dersDataGrid.Columns.Count > 0)
+                {
+                    dersDataGrid.Columns[0].HeaderText = "ID";
+                    dersDataGrid.Columns[0].Visible = false;
+                    dersDataGrid.Columns[1].HeaderText = "Ders Kodu";
+                    dersDataGrid.Columns[2].HeaderText = "Program Adı";
+                    dersDataGrid.Columns[3].HeaderText = "Ders Adı";
 
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // Hata durumunda mesaj kutusu göster
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void dersEkle_Click(object sender, EventArgs e)
@@ -261,7 +302,28 @@ namespace optic
             }
         }
 
+        private void dersSilButton_Click(object sender, EventArgs e)
+        {
+            // Ders kodunu al
+            string dersKodu = getirilecekDers.Text;
 
+            if (string.IsNullOrWhiteSpace(dersKodu))
+            {
+                MessageBox.Show("Lütfen ders kodunu giriniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            // Veritabanından ders koduna göre kayıtları sil
+            data.DeleteCourseByCourseCode(dersKodu);
+
+        }
+
+        private void dersDataGrid_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            using (SolidBrush b = new SolidBrush(dersDataGrid.RowHeadersDefaultCellStyle.ForeColor))
+            {
+                e.Graphics.DrawString((e.RowIndex + 1).ToString(), e.InheritedRowStyle.Font, b, e.RowBounds.Location.X + 10, e.RowBounds.Location.Y + 4);
+            }
+        }
     }
 }

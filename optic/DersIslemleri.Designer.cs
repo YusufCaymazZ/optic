@@ -59,13 +59,13 @@
             dersExcell = new Button();
             geriButton = new Button();
             dersSilButton = new Button();
-            dataGridView1 = new DataGridView();
+            dersDataGrid = new DataGridView();
             ogrDataGrid = new DataGridView();
             openFileDialog1 = new OpenFileDialog();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dersDataGrid).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ogrDataGrid).BeginInit();
             SuspendLayout();
             // 
@@ -76,7 +76,7 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 0);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel8, 0, 1);
-            tableLayoutPanel1.Controls.Add(dataGridView1, 1, 1);
+            tableLayoutPanel1.Controls.Add(dersDataGrid, 1, 1);
             tableLayoutPanel1.Controls.Add(ogrDataGrid, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
@@ -292,9 +292,9 @@
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 33F));
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 42F));
-            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 51F));
+            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 56F));
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel8.Size = new Size(586, 325);
             tableLayoutPanel8.TabIndex = 3;
@@ -393,7 +393,7 @@
             dersEkle.Dock = DockStyle.Fill;
             dersEkle.Location = new Point(355, 186);
             dersEkle.Name = "dersEkle";
-            dersEkle.Size = new Size(228, 42);
+            dersEkle.Size = new Size(228, 37);
             dersEkle.TabIndex = 9;
             dersEkle.Text = "Ekle veya Güncelle";
             dersEkle.UseVisualStyleBackColor = true;
@@ -402,7 +402,7 @@
             // dersExcell
             // 
             dersExcell.Dock = DockStyle.Fill;
-            dersExcell.Location = new Point(3, 234);
+            dersExcell.Location = new Point(3, 229);
             dersExcell.Name = "dersExcell";
             dersExcell.Size = new Size(346, 36);
             dersExcell.TabIndex = 10;
@@ -413,7 +413,7 @@
             // geriButton
             // 
             geriButton.Dock = DockStyle.Fill;
-            geriButton.Location = new Point(355, 234);
+            geriButton.Location = new Point(355, 229);
             geriButton.Name = "geriButton";
             geriButton.Size = new Size(228, 36);
             geriButton.TabIndex = 11;
@@ -426,19 +426,22 @@
             dersSilButton.Dock = DockStyle.Fill;
             dersSilButton.Location = new Point(3, 186);
             dersSilButton.Name = "dersSilButton";
-            dersSilButton.Size = new Size(346, 42);
+            dersSilButton.Size = new Size(346, 37);
             dersSilButton.TabIndex = 12;
             dersSilButton.Text = "Dersi Sil";
             dersSilButton.UseVisualStyleBackColor = true;
+            dersSilButton.Click += dersSilButton_Click;
             // 
-            // dataGridView1
+            // dersDataGrid
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(595, 333);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(586, 325);
-            dataGridView1.TabIndex = 4;
+            dersDataGrid.BackgroundColor = Color.Navy;
+            dersDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dersDataGrid.Dock = DockStyle.Fill;
+            dersDataGrid.Location = new Point(595, 333);
+            dersDataGrid.Name = "dersDataGrid";
+            dersDataGrid.Size = new Size(586, 325);
+            dersDataGrid.TabIndex = 4;
+            dersDataGrid.RowPostPaint += dersDataGrid_RowPostPaint;
             // 
             // ogrDataGrid
             // 
@@ -471,7 +474,7 @@
             tableLayoutPanel2.PerformLayout();
             tableLayoutPanel8.ResumeLayout(false);
             tableLayoutPanel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dersDataGrid).EndInit();
             ((System.ComponentModel.ISupportInitialize)ogrDataGrid).EndInit();
             ResumeLayout(false);
         }
@@ -481,7 +484,7 @@
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutPanel6;
         private TableLayoutPanel tableLayoutPanel8;
-        private DataGridView dataGridView1;
+        private DataGridView dersDataGrid;
         private Button dersListele;
         private Button dersGetir;
         private TextBox dersKodu;

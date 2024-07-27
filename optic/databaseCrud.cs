@@ -574,6 +574,100 @@ public class DataCrud
         }
     }
 
+    public void DeleteCourseByCourseCode(string dersKodu)
+    {
+        try
+        {
+            dbConnection.OpenConnection();
+            string query = "DELETE FROM dersler WHERE dersKod = @ders_kodu";
+            MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection());//SYNTAXI DÜZELT
+            cmd.Parameters.AddWithValue("@ders_kodu", dersKodu);
+            int affectedRows = cmd.ExecuteNonQuery();
+
+            if (affectedRows > 0)
+            {
+                MessageBox.Show($"{affectedRows} kayıt başarıyla silindi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Belirtilen ders koduna ait kayıt bulunamadı.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            dbConnection.CloseConnection();
+
+
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.ToString());
+            throw;
+        }
+    }
+
+
+    public DataTable GetOneDersDataGrid(String num)
+    {
+        string query = $"SELECT * FROM dersler WHERE dersKod={num}"; // Tablo adı veya sorguyu ihtiyacınıza göre değiştirin
+
+        DataTable dataTable = new DataTable();
+
+        try
+        {
+            dbConnection.OpenConnection();
+            using (MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection()))
+            {
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    // Verileri DataTable'a doldurun
+                    adapter.Fill(dataTable);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            // Hata durumunda Exception fırlat
+            throw new Exception("Veri yüklenirken bir hata oluştu: " + ex.Message);
+        }
+        finally
+        {
+            dbConnection.CloseConnection();
+        }
+
+        return dataTable;
+    }
+
+    public DataTable GetdersListDataGrid()
+    {
+        string query = "SELECT * FROM dersler"; // Tablo adı veya sorguyu ihtiyacınıza göre değiştirin
+
+        DataTable dataTable = new DataTable();
+
+        try
+        {
+            dbConnection.OpenConnection();
+            using (MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection()))
+            {
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    // Verileri DataTable'a doldurun
+                    adapter.Fill(dataTable);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            // Hata durumunda Exception fırlat
+            throw new Exception("Veri yüklenirken bir hata oluştu: " + ex.Message);
+        }
+        finally
+        {
+            dbConnection.CloseConnection();
+        }
+
+        return dataTable;
+    }
+
+
+
 
 
 
