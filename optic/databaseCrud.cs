@@ -475,6 +475,10 @@ public class DataCrud
             MessageBox.Show(ex.ToString());
             throw;
         }
+        finally
+        {
+            dbConnection.CloseConnection();
+        }
     }
 
     public DataTable GetogrListDataGrid()
@@ -572,6 +576,10 @@ public class DataCrud
         {
             throw ex;
         }
+        finally
+        {
+            dbConnection.CloseConnection();
+        }
     }
 
     public void DeleteCourseByCourseCode(string dersKodu)
@@ -600,6 +608,10 @@ public class DataCrud
         {
             MessageBox.Show(ex.ToString());
             throw;
+        }
+        finally
+        {
+            dbConnection.CloseConnection();
         }
     }
 
@@ -665,6 +677,40 @@ public class DataCrud
 
         return dataTable;
     }
+
+    public void AddOneOgr(string ogrNum, string dersKod, string ogrAd, string ogrsoyad)
+    {
+        dbConnection.OpenConnection();
+        string query = @"
+                INSERT INTO ogrlist (ders_kodu, ogr_no, ogr_isim, ogr_soyad)
+                VALUES (@ders_kodu, @ogr_no, @ogr_isim, @ogr_soyad)
+                ON DUPLICATE KEY UPDATE
+                ders_kodu = VALUES(ders_kodu),
+                ogr_isim = VALUES(ogr_isim),
+                ogr_soyad = VALUES(ogr_soyad)";
+        MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection()); // Tablo adı veya sorguyu ihtiyacınıza göre değiştirin
+        try
+        {
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@ogr_no", ogrNum);
+            cmd.Parameters.AddWithValue("@ogr_isim", ogrAd);
+            cmd.Parameters.AddWithValue("@ogr_soyad", ogrsoyad);
+            cmd.Parameters.AddWithValue("@ders_kodu", dersKod);
+            cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            // Hata durumunda Exception fırlat
+            throw new Exception("Veri yüklenirken bir hata oluştu: " + ex.Message);
+        }
+        finally
+        {
+            dbConnection.CloseConnection();
+        }
+
+    }
+
+
 
 
 

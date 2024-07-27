@@ -99,7 +99,22 @@ namespace optic
 
         private void ogrEkleGuncelle_Click(object sender, EventArgs e)
         {
+            string ogrNumarasi = ogrNum.Text;
+            string ogrDersKodu = ogrDersKoduTxt.Text;
+            string ogrAdi = ogrAd.Text;
+            string ogrSoyad = ogrSoyadi.Text;
 
+            if (ogrNumarasi == null || ogrDersKodu == null || ogrAdi == null || ogrSoyad == null || ogrNumarasi.Trim() == "" ||
+                ogrDersKodu.Trim() == "" || ogrAdi.Trim() == "" || ogrSoyad.Trim() == "")
+            {
+                MessageBox.Show("Lütfen gerekli alanlarda boş kısım bırakmayınız: \n1.Öğrenci Numarası,\n2.Öğrenci Adı,\n3.Öğrenci Soyadı," +
+                    "\n4.Ders Kodu.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                data.AddOneOgr(ogrNumarasi, ogrDersKodu, ogrAdi, ogrSoyad);
+            }
+            ogrListele_Click(sender, e);
         }
 
         private void ogrExcellBtn_Click(object sender, EventArgs e)
@@ -210,6 +225,8 @@ namespace optic
 
             // Veritabanından ders koduna göre kayıtları sil
             data.DeleteRecordsByCourseCode(dersKodu);
+            ogrListele_Click(sender, e);
+
         }
 
         private void ogrDataGrid_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
@@ -277,6 +294,7 @@ namespace optic
 
         private void dersEkle_Click(object sender, EventArgs e)
         {
+            
 
         }
 
