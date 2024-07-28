@@ -62,6 +62,9 @@
             label6 = new Label();
             durumtxtbox = new TextBox();
             geribtn = new Button();
+            ogrGetir = new Button();
+            label19 = new Label();
+            eskinumtxt = new TextBox();
             tableLayoutPanel13 = new TableLayoutPanel();
             label15 = new Label();
             ders6txtbox = new TextBox();
@@ -80,7 +83,6 @@
             label16 = new Label();
             label18 = new Label();
             guncellebtn = new Button();
-            durumlabel = new Label();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel6.SuspendLayout();
@@ -145,6 +147,13 @@
             tableLayoutPanel6.RowCount = 2;
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel6.Size = new Size(409, 156);
             tableLayoutPanel6.TabIndex = 0;
             // 
@@ -329,6 +338,7 @@
             tableLayoutPanel3.RowCount = 2;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 44.9230766F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 55.0769234F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel3.Size = new Size(586, 325);
             tableLayoutPanel3.TabIndex = 1;
             // 
@@ -451,7 +461,10 @@
             tableLayoutPanel12.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 61.42506F));
             tableLayoutPanel12.Controls.Add(label6, 0, 0);
             tableLayoutPanel12.Controls.Add(durumtxtbox, 1, 0);
-            tableLayoutPanel12.Controls.Add(geribtn, 0, 1);
+            tableLayoutPanel12.Controls.Add(geribtn, 0, 2);
+            tableLayoutPanel12.Controls.Add(ogrGetir, 1, 2);
+            tableLayoutPanel12.Controls.Add(label19, 0, 1);
+            tableLayoutPanel12.Controls.Add(eskinumtxt, 1, 1);
             tableLayoutPanel12.Dock = DockStyle.Fill;
             tableLayoutPanel12.Location = new Point(3, 149);
             tableLayoutPanel12.Name = "tableLayoutPanel12";
@@ -484,13 +497,43 @@
             // geribtn
             // 
             geribtn.Dock = DockStyle.Bottom;
-            geribtn.Location = new Point(3, 97);
+            geribtn.Location = new Point(3, 138);
             geribtn.Name = "geribtn";
             geribtn.Size = new Size(151, 32);
             geribtn.TabIndex = 3;
             geribtn.Text = "Geri";
             geribtn.UseVisualStyleBackColor = true;
             geribtn.Click += geribtn_Click;
+            // 
+            // ogrGetir
+            // 
+            ogrGetir.Dock = DockStyle.Bottom;
+            ogrGetir.Location = new Point(160, 138);
+            ogrGetir.Name = "ogrGetir";
+            ogrGetir.Size = new Size(244, 32);
+            ogrGetir.TabIndex = 4;
+            ogrGetir.Text = "Öğrenciyi Getir";
+            ogrGetir.UseVisualStyleBackColor = true;
+            ogrGetir.Click += ogrGetir_Click;
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Dock = DockStyle.Bottom;
+            label19.Location = new Point(3, 111);
+            label19.Name = "label19";
+            label19.Size = new Size(151, 21);
+            label19.TabIndex = 5;
+            label19.Text = "Düzeltilecek No:";
+            label19.TextAlign = ContentAlignment.TopRight;
+            // 
+            // eskinumtxt
+            // 
+            eskinumtxt.Dock = DockStyle.Bottom;
+            eskinumtxt.Location = new Point(160, 102);
+            eskinumtxt.Name = "eskinumtxt";
+            eskinumtxt.Size = new Size(244, 27);
+            eskinumtxt.TabIndex = 6;
             // 
             // tableLayoutPanel13
             // 
@@ -618,7 +661,6 @@
             tableLayoutPanel5.Controls.Add(label16, 0, 0);
             tableLayoutPanel5.Controls.Add(label18, 0, 2);
             tableLayoutPanel5.Controls.Add(guncellebtn, 1, 3);
-            tableLayoutPanel5.Controls.Add(durumlabel, 0, 3);
             tableLayoutPanel5.Dock = DockStyle.Fill;
             tableLayoutPanel5.Location = new Point(595, 333);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -698,18 +740,6 @@
             guncellebtn.Text = "Güncelle";
             guncellebtn.UseVisualStyleBackColor = true;
             guncellebtn.Click += guncellebtn_Click;
-            // 
-            // durumlabel
-            // 
-            durumlabel.AutoSize = true;
-            durumlabel.Dock = DockStyle.Bottom;
-            durumlabel.Location = new Point(3, 260);
-            durumlabel.Name = "durumlabel";
-            durumlabel.Size = new Size(133, 21);
-            durumlabel.TabIndex = 15;
-            durumlabel.Text = "label19";
-            durumlabel.TextAlign = ContentAlignment.MiddleCenter;
-            durumlabel.Visible = false;
             // 
             // ogr_guncelle
             // 
@@ -802,6 +832,8 @@
         private Label label18;
         private Button geribtn;
         private Button guncellebtn;
-        private Label durumlabel;
+        private Button ogrGetir;
+        private Label label19;
+        private TextBox eskinumtxt;
     }
 }

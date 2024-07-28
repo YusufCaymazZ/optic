@@ -32,10 +32,8 @@
             HandledUsers = new DataGridView();
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel2 = new TableLayoutPanel();
-            label2 = new Label();
             tableLayoutPanel9 = new TableLayoutPanel();
             tableLayoutPanel3 = new TableLayoutPanel();
-            textBox2 = new TextBox();
             tableLayoutPanel10 = new TableLayoutPanel();
             optic_txt = new Button();
             button4 = new Button();
@@ -48,8 +46,6 @@
             button1 = new Button();
             button2 = new Button();
             tableLayoutPanel8 = new TableLayoutPanel();
-            mysqltest = new Button();
-            txtoutput = new Label();
             ((System.ComponentModel.ISupportInitialize)HandledUsers).BeginInit();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -58,7 +54,6 @@
             tableLayoutPanel11.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
             tableLayoutPanel7.SuspendLayout();
-            tableLayoutPanel8.SuspendLayout();
             SuspendLayout();
             // 
             // HandledUsers
@@ -76,7 +71,6 @@
             HandledUsers.SelectionMode = DataGridViewSelectionMode.CellSelect;
             HandledUsers.Size = new Size(1184, 259);
             HandledUsers.TabIndex = 0;
-            HandledUsers.Visible = false;
             // 
             // tableLayoutPanel1
             // 
@@ -103,7 +97,6 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 51.88679F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 48.11321F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 363F));
-            tableLayoutPanel2.Controls.Add(label2, 2, 2);
             tableLayoutPanel2.Controls.Add(tableLayoutPanel9, 2, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(4, 4);
@@ -115,18 +108,6 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 53F));
             tableLayoutPanel2.Size = new Size(470, 193);
             tableLayoutPanel2.TabIndex = 0;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.CausesValidation = false;
-            label2.Dock = DockStyle.Fill;
-            label2.Location = new Point(109, 139);
-            label2.Name = "label2";
-            label2.Size = new Size(358, 54);
-            label2.TabIndex = 1;
-            label2.Text = "Güncellenecek Numara:";
-            label2.TextAlign = ContentAlignment.MiddleRight;
             // 
             // tableLayoutPanel9
             // 
@@ -148,7 +129,6 @@
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 68.82494F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 31.17506F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 166F));
-            tableLayoutPanel3.Controls.Add(textBox2, 0, 2);
             tableLayoutPanel3.Controls.Add(tableLayoutPanel10, 0, 0);
             tableLayoutPanel3.Controls.Add(optic_txt, 2, 1);
             tableLayoutPanel3.Controls.Add(button4, 2, 2);
@@ -157,23 +137,11 @@
             tableLayoutPanel3.Margin = new Padding(4);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 3;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 64.7541F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 35.245903F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 64.02878F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 35.9712219F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 53F));
             tableLayoutPanel3.Size = new Size(698, 193);
             tableLayoutPanel3.TabIndex = 1;
-            // 
-            // textBox2
-            // 
-            textBox2.Dock = DockStyle.Fill;
-            textBox2.Location = new Point(3, 154);
-            textBox2.Margin = new Padding(3, 15, 3, 3);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(360, 27);
-            textBox2.TabIndex = 1;
-            textBox2.Text = "Numara giriniz.";
-            textBox2.TextAlign = HorizontalAlignment.Center;
-            textBox2.Click += textBox2_Click;
             // 
             // tableLayoutPanel10
             // 
@@ -186,7 +154,7 @@
             tableLayoutPanel10.RowCount = 2;
             tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel10.Size = new Size(360, 84);
+            tableLayoutPanel10.Size = new Size(360, 83);
             tableLayoutPanel10.TabIndex = 2;
             // 
             // optic_txt
@@ -209,6 +177,7 @@
             button4.TabIndex = 4;
             button4.Text = "Cevapları Ekle";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // tableLayoutPanel4
             // 
@@ -326,8 +295,6 @@
             tableLayoutPanel8.ColumnCount = 2;
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel8.Controls.Add(mysqltest, 0, 0);
-            tableLayoutPanel8.Controls.Add(txtoutput, 1, 0);
             tableLayoutPanel8.Dock = DockStyle.Fill;
             tableLayoutPanel8.Location = new Point(3, 99);
             tableLayoutPanel8.Name = "tableLayoutPanel8";
@@ -336,30 +303,6 @@
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel8.Size = new Size(343, 91);
             tableLayoutPanel8.TabIndex = 3;
-            // 
-            // mysqltest
-            // 
-            mysqltest.Dock = DockStyle.Fill;
-            mysqltest.ForeColor = SystemColors.ControlText;
-            mysqltest.Location = new Point(3, 3);
-            mysqltest.Name = "mysqltest";
-            mysqltest.Size = new Size(165, 39);
-            mysqltest.TabIndex = 0;
-            mysqltest.Text = "db check";
-            mysqltest.UseVisualStyleBackColor = true;
-            mysqltest.Click += mysqltest_Click;
-            // 
-            // txtoutput
-            // 
-            txtoutput.AutoSize = true;
-            txtoutput.Dock = DockStyle.Fill;
-            txtoutput.Location = new Point(174, 0);
-            txtoutput.Name = "txtoutput";
-            txtoutput.Size = new Size(166, 45);
-            txtoutput.TabIndex = 1;
-            txtoutput.Text = "test";
-            txtoutput.TextAlign = ContentAlignment.MiddleCenter;
-            txtoutput.Visible = false;
             // 
             // sinav_islemleri
             // 
@@ -381,15 +324,11 @@
             ((System.ComponentModel.ISupportInitialize)HandledUsers).EndInit();
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
-            tableLayoutPanel2.PerformLayout();
             tableLayoutPanel3.ResumeLayout(false);
-            tableLayoutPanel3.PerformLayout();
             tableLayoutPanel4.ResumeLayout(false);
             tableLayoutPanel11.ResumeLayout(false);
             tableLayoutPanel5.ResumeLayout(false);
             tableLayoutPanel7.ResumeLayout(false);
-            tableLayoutPanel8.ResumeLayout(false);
-            tableLayoutPanel8.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -404,16 +343,12 @@
         private TableLayoutPanel tableLayoutPanel6;
         private TableLayoutPanel tableLayoutPanel7;
         private TableLayoutPanel tableLayoutPanel8;
-        private Label label2;
-        private TextBox textBox2;
         private Button button1;
         private Button button2;
         private TableLayoutPanel tableLayoutPanel9;
         private TableLayoutPanel tableLayoutPanel10;
         private Button optic_txt;
         private Button button4;
-        private Button mysqltest;
-        private Label txtoutput;
         private TableLayoutPanel tableLayoutPanel11;
         private Button geri_button;
     }

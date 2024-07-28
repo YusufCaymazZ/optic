@@ -30,24 +30,7 @@ namespace optic
         }
 
 
-        private void mysqltest_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                DatabaseConnection dbConnection = new DatabaseConnection();
-                dbConnection.OpenConnection();
-                txtoutput.Text = "Veritabanına bağlanıldı";
-                txtoutput.Visible = true;
-                HandledUsers.Visible = true;
 
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Veritabanı işlemi sırasında bir hata oluştu: {ex.Message}");
-            }
-
-        }
 
         private void AddDataToGridView()
         {
@@ -109,7 +92,8 @@ namespace optic
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ogr_guncelle form = new ogr_guncelle();
+            DatabaseConnection connection = new DatabaseConnection();
+            ogr_guncelle form = new ogr_guncelle(connection);
             form.Show();
             this.Hide();
         }
@@ -163,9 +147,12 @@ namespace optic
             }
         }
 
-        private void textBox2_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
-            textBox2.Text = string.Empty;
+            DatabaseConnection connection = new DatabaseConnection();
+            Cevaplar form = new Cevaplar(connection);
+            form.Show();
+            this.Hide();
         }
     }
 }

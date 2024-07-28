@@ -1,13 +1,6 @@
-﻿using System;
-using System.Linq.Expressions;
-using System.Xml.Linq;
-using DocumentFormat.OpenXml.Bibliography;
-using DocumentFormat.OpenXml.Wordprocessing;
-using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Asn1;
-using System.Collections.Generic;
+﻿using MySql.Data.MySqlClient;
+using optic;
 using System.Data;
-using MongoDB.Driver.Core.Configuration;
 
 public class DataCrud
 {
@@ -709,6 +702,127 @@ public class DataCrud
         }
 
     }
+
+    public void UpdateOneTxt(string eskiOgrNum, string newOgrNum = null, string newOgrIsim = null,
+                      string ders1 = null, string ders2 = null, string ders3 = null,
+                      string ders4 = null, string ders5 = null, string ders6 = null,
+                      string cevap1 = null, string cevap2 = null, string cevap3 = null,
+                      string cevap4 = null, string cevap5 = null, string cevap6 = null,
+                      string oturum = null, string grup = null, string kitapcik = null,
+                      string durum = null)
+    {
+        try
+        {
+            dbConnection.OpenConnection();
+
+            // Dinamik olarak güncelleme sorgusunu oluşturuyoruz
+            List<string> updates = new List<string>();
+            MySqlCommand cmd = new MySqlCommand();
+
+            // Belirtilen parametreleri güncellenen sütunlar listesine ekliyoruz
+            AddUpdateParameter(cmd, updates, "@newOgrNum", "ogr_num", newOgrNum);
+            AddUpdateParameter(cmd, updates, "@newOgrIsim", "ogr_isim", newOgrIsim);
+            AddUpdateParameter(cmd, updates, "@ders1", "ders1", ders1);
+            AddUpdateParameter(cmd, updates, "@ders2", "ders2", ders2);
+            AddUpdateParameter(cmd, updates, "@ders3", "ders3", ders3);
+            AddUpdateParameter(cmd, updates, "@ders4", "ders4", ders4);
+            AddUpdateParameter(cmd, updates, "@ders5", "ders5", ders5);
+            AddUpdateParameter(cmd, updates, "@ders6", "ders6", ders6);
+            AddUpdateParameter(cmd, updates, "@cevap1", "cevap1", cevap1);
+            AddUpdateParameter(cmd, updates, "@cevap2", "cevap2", cevap2);
+            AddUpdateParameter(cmd, updates, "@cevap3", "cevap3", cevap3);
+            AddUpdateParameter(cmd, updates, "@cevap4", "cevap4", cevap4);
+            AddUpdateParameter(cmd, updates, "@cevap5", "cevap5", cevap5);
+            AddUpdateParameter(cmd, updates, "@cevap6", "cevap6", cevap6);
+            AddUpdateParameter(cmd, updates, "@oturum", "oturum", oturum);
+            AddUpdateParameter(cmd, updates, "@grup", "grup", grup);
+            AddUpdateParameter(cmd, updates, "@kitapcik", "kitapcik", kitapcik);
+            AddUpdateParameter(cmd, updates, "@durum", "durum", durum);
+
+            if (updates.Count == 0)
+            {
+                throw new ArgumentException("En az bir alan güncellenmelidir.");
+            }
+
+            // Güncelleme sorgusu
+            string query = "UPDATE optictxt SET " + string.Join(", ", updates) + " WHERE ogr_num = @eskiOgrNum";
+            cmd.CommandText = query;
+            cmd.Connection = dbConnection.GetConnection();
+
+            // Eski öğrenci numarasını parametre olarak ekliyoruz
+            cmd.Parameters.AddWithValue("@eskiOgrNum", eskiOgrNum);
+
+            cmd.ExecuteNonQuery();
+            MessageBox.Show("Kullanıcı bilgileri başarıyla güncellendi.");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Kullanıcı bilgilerini güncelleme sırasında bir hata oluştu: {ex.Message}");
+        }
+        finally
+        {
+            dbConnection.CloseConnection();
+        }
+    }
+
+
+    public Student GetStudentByOgrNum(string eskiOgrNum)
+    {
+        Student student = null;
+
+        try
+        {
+            dbConnection.OpenConnection();
+            string query = "SELECT * FROM optictxt WHERE ogr_num = @eskiOgrNum";
+            MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection());
+            cmd.Parameters.AddWithValue("@eskiOgrNum", eskiOgrNum);
+
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    student = new Student
+                    {
+                        OgrNum = reader["ogr_num"].ToString(),
+                        OgrIsim = reader["ogr_isim"].ToString(),
+                        Ders1 = reader["ders1"].ToString(),
+                        Ders2 = reader["ders2"].ToString(),
+                        Ders3 = reader["ders3"].ToString(),
+                        Ders4 = reader["ders4"].ToString(),
+                        Ders5 = reader["ders5"].ToString(),
+                        Ders6 = reader["ders6"].ToString(),
+                        Cevap1 = reader["cevap1"].ToString(),
+                        Cevap2 = reader["cevap2"].ToString(),
+                        Cevap3 = reader["cevap3"].ToString(),
+                        Cevap4 = reader["cevap4"].ToString(),
+                        Cevap5 = reader["cevap5"].ToString(),
+                        Cevap6 = reader["cevap6"].ToString(),
+                        Oturum = reader["oturum"].ToString(),
+                        Grup = reader["grup"].ToString(),
+                        Kitapcik = reader["kitapcik"].ToString(),
+                        Durum = reader["durum"].ToString()
+                    };
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Öğrenci bilgilerini getirirken bir hata oluştu: {ex.Message}");
+        }
+        finally
+        {
+            dbConnection.CloseConnection();
+        }
+
+        return student;
+    }
+
+
+
+
+
+
+
 
 
 
