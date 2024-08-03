@@ -818,6 +818,95 @@ public class DataCrud
     }
 
 
+    public void InsertAnsIntoDatabase(DataTable dataTable)
+    {
+        try
+        {
+            dbConnection.OpenConnection();
+            string query = @"
+                INSERT INTO cevapanahtarı (ders_kodu, ders_adi, cevap)
+                VALUES (@ders_kodu, @ders_adi, @cevap)
+                ON DUPLICATE KEY UPDATE
+                ders_kodu = VALUES(ders_kodu),
+                ders_adi = VALUES(ders_adi)";
+            MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection());//SYNTAXI DÜZELT
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                {
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@ders_kodu", row["ders_kodu"]);
+                    cmd.Parameters.AddWithValue("@ders_adi", row["ders_adi"]);
+                    cmd.Parameters.AddWithValue("@cevap", row["cevap"].ToString().ToUpper());
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            MessageBox.Show("Veriler başarıyla kaydedildi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            dbConnection.CloseConnection();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public DataTable GetCevapListDataGrid()
+    {
+        string query = "SELECT * FROM cevapanahtarı"; // Tablo adı veya sorguyu ihtiyacınıza göre değiştirin
+
+        DataTable dataTable = new DataTable();
+
+        try
+        {
+            dbConnection.OpenConnection();
+            using (MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection()))
+            {
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    // Verileri DataTable'a doldurun
+                    adapter.Fill(dataTable);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            // Hata durumunda Exception fırlat
+            throw new Exception("Veri yüklenirken bir hata oluştu: " + ex.Message);
+        }
+        finally
+        {
+            dbConnection.CloseConnection();
+        }
+
+        return dataTable;
+    }
+
+    public List<String> GetDersKoduData()
+    {
+        List<string> ders_kodu = new List<string>();
+        try
+        {
+            dbConnection.OpenConnection();
+            string query = "SELECT ders_kodu FROM cevapanahtarı";
+            MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection());
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                ders_kodu.Add(reader["ders_kodu"].ToString());
+            }
+            reader.Close();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Veri çekme sırasında bir hata oluştu: {ex.Message}");
+        }
+        finally
+        {
+            dbConnection.CloseConnection();
+        }
+        return ders_kodu;
+    }
+
 
 
 
