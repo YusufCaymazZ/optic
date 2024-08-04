@@ -9,6 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System;
+using System.IO;
+using System.Windows.Forms;
+using System.Data.Common;
 
 namespace optic
 {
@@ -16,6 +20,10 @@ namespace optic
     {
         DatabaseConnection db;
         DataCrud data;
+        private DataTable dataTable;
+        private DataTable answerKeyTable;
+
+
         public Cevaplar(DatabaseConnection db)
         {
             InitializeComponent();
@@ -25,6 +33,8 @@ namespace optic
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.RowPostPaint += new DataGridViewRowPostPaintEventHandler(dataGridView1_RowPostPaint);
             PopulateComboBox(comboBox1);
+            this.db = db;
+
 
 
         }
@@ -165,5 +175,47 @@ namespace optic
                 comboBox.Items.Add(value);
             }
         }
+
+        private void buttonListele_Click(object sender, EventArgs e)
+        {
+           
+            try
+            { 
+                var selectedDers = comboBox1.SelectedItem.ToString();
+                if (selectedDers != null)
+                {
+                    string query = $"SELECT * FROM optictxt WHERE ders1 = '{selectedDers}' OR ders2 = '{selectedDers}' OR ders3 = '{selectedDers}'" +
+                $" OR ders4 = '{selectedDers}' OR ders5 = '{selectedDers}' OR ders6 = '{selectedDers}'";
+                    using (MySqlCommand cmd = new MySqlCommand(query, db.GetConnection()))
+                    {
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            // Verileri DataTable'a doldurun
+                            dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+                        }
+                    }
+                    dataGridView1.DataSource = dataTable;
+
+                }
+                else
+                {
+                    MessageBox.Show("Lütfen önce dersi seçiniz.");
+
+                }
+
+
+            }
+            
+            catch(Exception ex) {
+                MessageBox.Show($"Bir hata oluştu: {ex.Message} \n Lütfen önce dersi seçiniz.(Elle yazmayınız.)");
+
+            }
+
+
+
+        }
+
+
     }
 }

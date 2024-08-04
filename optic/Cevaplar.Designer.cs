@@ -38,6 +38,7 @@
             comboBox1 = new ComboBox();
             label1 = new Label();
             kitapcikChck = new CheckBox();
+            buttonListele = new Button();
             dataGridView1 = new DataGridView();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -99,13 +100,14 @@
             tableLayoutPanel2.Controls.Add(comboBox1, 4, 2);
             tableLayoutPanel2.Controls.Add(label1, 3, 2);
             tableLayoutPanel2.Controls.Add(kitapcikChck, 4, 3);
+            tableLayoutPanel2.Controls.Add(buttonListele, 1, 2);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(3, 3);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 4;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 33F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 56F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 57F));
             tableLayoutPanel2.Size = new Size(1178, 314);
             tableLayoutPanel2.TabIndex = 0;
@@ -113,9 +115,9 @@
             // cevapAnahtari
             // 
             cevapAnahtari.Dock = DockStyle.Fill;
-            cevapAnahtari.Location = new Point(480, 260);
+            cevapAnahtari.Location = new Point(480, 259);
             cevapAnahtari.Name = "cevapAnahtari";
-            cevapAnahtari.Size = new Size(250, 51);
+            cevapAnahtari.Size = new Size(250, 52);
             cevapAnahtari.TabIndex = 0;
             cevapAnahtari.Text = "Cevap Anahtarı Dosyası Seç";
             cevapAnahtari.UseVisualStyleBackColor = true;
@@ -124,9 +126,9 @@
             // cevapAnahtariListele
             // 
             cevapAnahtariListele.Dock = DockStyle.Fill;
-            cevapAnahtariListele.Location = new Point(243, 260);
+            cevapAnahtariListele.Location = new Point(243, 259);
             cevapAnahtariListele.Name = "cevapAnahtariListele";
-            cevapAnahtariListele.Size = new Size(231, 51);
+            cevapAnahtariListele.Size = new Size(231, 52);
             cevapAnahtariListele.TabIndex = 1;
             cevapAnahtariListele.Text = "Cevap Anahtarlarını Listele";
             cevapAnahtariListele.UseVisualStyleBackColor = true;
@@ -135,9 +137,9 @@
             // geriButton
             // 
             geriButton.Dock = DockStyle.Fill;
-            geriButton.Location = new Point(3, 260);
+            geriButton.Location = new Point(3, 259);
             geriButton.Name = "geriButton";
-            geriButton.Size = new Size(234, 51);
+            geriButton.Size = new Size(234, 52);
             geriButton.TabIndex = 2;
             geriButton.Text = "Geri";
             geriButton.UseVisualStyleBackColor = true;
@@ -147,7 +149,7 @@
             // 
             comboBox1.Dock = DockStyle.Fill;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(917, 227);
+            comboBox1.Location = new Point(917, 203);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(258, 29);
             comboBox1.TabIndex = 3;
@@ -156,7 +158,7 @@
             // 
             label1.AutoSize = true;
             label1.Dock = DockStyle.Top;
-            label1.Location = new Point(736, 224);
+            label1.Location = new Point(736, 200);
             label1.Name = "label1";
             label1.Size = new Size(175, 21);
             label1.TabIndex = 4;
@@ -166,12 +168,23 @@
             // kitapcikChck
             // 
             kitapcikChck.AutoSize = true;
-            kitapcikChck.Location = new Point(917, 260);
+            kitapcikChck.Location = new Point(917, 259);
             kitapcikChck.Name = "kitapcikChck";
             kitapcikChck.Size = new Size(125, 25);
             kitapcikChck.TabIndex = 5;
             kitapcikChck.Text = "Kitapçık var.";
             kitapcikChck.UseVisualStyleBackColor = true;
+            // 
+            // buttonListele
+            // 
+            buttonListele.Dock = DockStyle.Fill;
+            buttonListele.Location = new Point(243, 203);
+            buttonListele.Name = "buttonListele";
+            buttonListele.Size = new Size(231, 50);
+            buttonListele.TabIndex = 6;
+            buttonListele.Text = "Ders Listele";
+            buttonListele.UseVisualStyleBackColor = true;
+            buttonListele.Click += buttonListele_Click;
             // 
             // dataGridView1
             // 
@@ -216,5 +229,6 @@
         private ComboBox comboBox1;
         private Label label1;
         private CheckBox kitapcikChck;
+        private Button buttonListele;
     }
 }

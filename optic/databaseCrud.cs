@@ -364,10 +364,7 @@ public class DataCrud
                 results.Add(reader.GetInt32("durumBit"));
             }
             reader.Close();
-            foreach (var item in results)
-            {
-                MessageBox.Show($"{item}");
-            }
+            
         }
         catch (Exception ex)
         {
@@ -413,13 +410,16 @@ public class DataCrud
         {
             dbConnection.OpenConnection();
             string query = @"
-                INSERT INTO ogrlist (ders_kodu, ogr_no, ogr_isim, ogr_soyad)
-                VALUES (@ders_kodu, @ogr_no, @ogr_isim, @ogr_soyad)
+                INSERT INTO ogrlist ( ogr_no, ogr_isim, ogr_soyad)
+                VALUES (@ogr_no, @ogr_isim, @ogr_soyad)
                 ON DUPLICATE KEY UPDATE
-                ders_kodu = VALUES(ders_kodu),
                 ogr_isim = VALUES(ogr_isim),
                 ogr_soyad = VALUES(ogr_soyad)";
             MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection());//SYNTAXI DÜZELT
+            foreach (DataColumn column in dataTable.Columns)
+            {
+                MessageBox.Show(column.ColumnName);
+            }
 
             foreach (DataRow row in dataTable.Rows)
             {
@@ -428,7 +428,6 @@ public class DataCrud
                     cmd.Parameters.AddWithValue("@ogr_no", row["ogrno"]);
                     cmd.Parameters.AddWithValue("@ogr_isim", row["ogrisim"]);
                     cmd.Parameters.AddWithValue("@ogr_soyad", row["ogrsoyad"]);
-                    cmd.Parameters.AddWithValue("@ders_kodu", row["derskodu"]);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -556,9 +555,9 @@ public class DataCrud
             {
                 {
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@derskodu", row["derskodu"]);
-                    cmd.Parameters.AddWithValue("@programadi", row["programadi"]);
-                    cmd.Parameters.AddWithValue("@dersadi", row["dersadi"]);
+                    cmd.Parameters.AddWithValue("@derskodu", row["ogrno"]);
+                    cmd.Parameters.AddWithValue("@programadi", row["ogrisim"]);
+                    cmd.Parameters.AddWithValue("@dersadi", row["ogrsoyad"]);
                     cmd.ExecuteNonQuery();
                 }
             }

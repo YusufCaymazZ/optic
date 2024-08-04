@@ -120,13 +120,6 @@ namespace optic
         private void ogrExcellBtn_Click(object sender, EventArgs e)
         {
             // Ders kodunu al
-            string dersKodu = ogrDersKoduTxt.Text;
-
-            if (string.IsNullOrWhiteSpace(dersKodu))
-            {
-                MessageBox.Show("Lütfen ders kodunu giriniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             // Excel dosyasını seç
             OpenFileDialog openFileDialog = new OpenFileDialog
@@ -140,7 +133,7 @@ namespace optic
             string filePath = openFileDialog.FileName;
 
             // Excel dosyasını oku ve DataTable'a aktar
-            DataTable dataTable = ReadExcelFile(filePath, dersKodu);
+            DataTable dataTable = ReadExcelFile(filePath);
 
             // Veritabanına aktar
             if (dataTable != null)
@@ -201,9 +194,9 @@ namespace optic
                 }
 
                 // Sütun adlarını manuel olarak ayarla
-                dataTable.Columns[0].ColumnName = "derskodu";
-                dataTable.Columns[1].ColumnName = "programadi";
-                dataTable.Columns[2].ColumnName = "dersadi";
+                dataTable.Columns[0].ColumnName = "ogrno";
+                dataTable.Columns[1].ColumnName = "ogrisim";
+                dataTable.Columns[2].ColumnName = "ogrsoyad";
 
             }
             return dataTable;

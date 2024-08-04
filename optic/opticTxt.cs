@@ -108,7 +108,6 @@ namespace optic
                 {
                     filePath = openFileDialog.FileName;
                     lines = ReadFileLines(filePath);
-                    MessageBox.Show(lines[1]);
 
                     string selectedItem = opticCombo.SelectedItem.ToString();
                     dt = data.GetIntColumns(selectedItem);
