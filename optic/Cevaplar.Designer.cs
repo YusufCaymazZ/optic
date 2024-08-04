@@ -39,6 +39,7 @@
             label1 = new Label();
             kitapcikChck = new CheckBox();
             buttonListele = new Button();
+            sonuc_hesapla = new Button();
             dataGridView1 = new DataGridView();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -101,6 +102,7 @@
             tableLayoutPanel2.Controls.Add(label1, 3, 2);
             tableLayoutPanel2.Controls.Add(kitapcikChck, 4, 3);
             tableLayoutPanel2.Controls.Add(buttonListele, 1, 2);
+            tableLayoutPanel2.Controls.Add(sonuc_hesapla, 2, 2);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(3, 3);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -186,6 +188,17 @@
             buttonListele.UseVisualStyleBackColor = true;
             buttonListele.Click += buttonListele_Click;
             // 
+            // sonuc_hesapla
+            // 
+            sonuc_hesapla.Dock = DockStyle.Fill;
+            sonuc_hesapla.Location = new Point(480, 203);
+            sonuc_hesapla.Name = "sonuc_hesapla";
+            sonuc_hesapla.Size = new Size(250, 50);
+            sonuc_hesapla.TabIndex = 7;
+            sonuc_hesapla.Text = "Sonuçları Hesapla";
+            sonuc_hesapla.UseVisualStyleBackColor = true;
+            sonuc_hesapla.Click += sonuc_hesapla_Click;
+            // 
             // dataGridView1
             // 
             dataGridView1.BackgroundColor = Color.Navy;
@@ -230,5 +243,6 @@
         private Label label1;
         private CheckBox kitapcikChck;
         private Button buttonListele;
+        private Button sonuc_hesapla;
     }
 }

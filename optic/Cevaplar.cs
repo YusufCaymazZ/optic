@@ -70,7 +70,7 @@ namespace optic
             catch (Exception ex)
             {
                 // Hata durumunda mesaj kutusu göster
-                MessageBox.Show(ex.Message);
+                throw ex;
             }
         }
 
@@ -178,9 +178,9 @@ namespace optic
 
         private void buttonListele_Click(object sender, EventArgs e)
         {
-           
+
             try
-            { 
+            {
                 var selectedDers = comboBox1.SelectedItem.ToString();
                 if (selectedDers != null)
                 {
@@ -206,8 +206,9 @@ namespace optic
 
 
             }
-            
-            catch(Exception ex) {
+
+            catch (Exception ex)
+            {
                 MessageBox.Show($"Bir hata oluştu: {ex.Message} \n Lütfen önce dersi seçiniz.(Elle yazmayınız.)");
 
             }
@@ -215,6 +216,82 @@ namespace optic
 
 
         }
+
+        private void sonuc_hesapla_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Veritabanı bağlantısını aç
+                DatabaseConnection dbConnection = new DatabaseConnection();
+                dbConnection.OpenConnection();
+
+                // Verileri getir
+                DataTable optictxtData = GetTableData(dbConnection.GetConnection(), "SELECT * FROM optictxt");
+                DataTable cevapanahtariData = GetTableData(dbConnection.GetConnection(), "SELECT * FROM cevapanahtarı");
+
+                // Sonuçları hesapla
+                DataTable resultTable = CalculateResults(optictxtData, cevapanahtariData);
+
+                // Sonuçları veritabanına kaydet
+                SaveResults(dbConnection.GetConnection(), resultTable);
+
+                // Veritabanı bağlantısını kapat
+                dbConnection.CloseConnection();
+
+                MessageBox.Show("Sonuçlar başarıyla hesaplandı ve kaydedildi.");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        DataTable GetTableData(MySqlConnection connection, string query)
+        {
+            MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+            return table;
+        }
+
+        DataTable CalculateResults(DataTable optictxtData, DataTable cevapanahtariData)
+        {   
+            DataTable table = new DataTable();
+
+            return table;
+        }
+
+        void SaveResults(MySqlConnection connection, DataTable results)
+        {
+            foreach (DataRow row in results.Rows)
+            {
+                string query = @"
+            INSERT INTO ogrenci_sonuclari (ogr_num, ogr_isim, doğru, yanlış, bos, net, puan, durum) 
+            VALUES (@ogr_num, @ogr_isim, @doğru, @yanlış, @bos, @net, @puan, @durum)
+            ON DUPLICATE KEY UPDATE 
+                doğru = VALUES(doğru), 
+                yanlış = VALUES(yanlış), 
+                bos = VALUES(bos), 
+                net = VALUES(net), 
+                puan = VALUES(puan), 
+                durum = VALUES(durum);";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ogr_num", row["ogr_num"]);
+                    command.Parameters.AddWithValue("@ogr_isim", row["ogr_isim"]);
+                    command.Parameters.AddWithValue("@doğru", row["doğru"]);
+                    command.Parameters.AddWithValue("@yanlış", row["yanlış"]);
+                    command.Parameters.AddWithValue("@bos", row["bos"]);
+                    command.Parameters.AddWithValue("@net", row["net"]);
+                    command.Parameters.AddWithValue("@puan", row["puan"]);
+                    command.Parameters.AddWithValue("@durum", row["durum"]);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
 
 
     }
