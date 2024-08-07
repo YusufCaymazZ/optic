@@ -13,6 +13,7 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 using System.Data.Common;
+using System.Threading;
 
 namespace optic
 {
@@ -22,7 +23,6 @@ namespace optic
         DataCrud data;
         private DataTable dataTable;
         private DataTable answerKeyTable;
-
 
         public Cevaplar(DatabaseConnection db)
         {
@@ -217,82 +217,129 @@ namespace optic
 
         }
 
-        private void sonuc_hesapla_Click(object sender, EventArgs e)
+
+
+
+        private void dKoduChck_CheckedChanged(object sender, EventArgs e)
         {
+            if (dKoduChck.Checked)
+            {
+                DialogResult result = MessageBox.Show("Bu işlemi yapmanız diğer veritabanlarını silecektir.", "Onay", MessageBoxButtons.OKCancel);
+                if (result == DialogResult.OK)
+                {
+                    //Burada veritabanları silinmeli
+
+                    DatabaseConnection connection = new DatabaseConnection();
+                    DersKodlarınıEkle form = new DersKodlarınıEkle(connection);
+                    form.ShowDialog();
+
+                }
+                else
+                {
+                    dKoduChck.Checked = false;
+
+                }
+
+            }
+        }
+
+        private void DbSil_Click(object sender, EventArgs e)
+        {
+            String query = "DELETE FROM ogrlist;" +
+                "DELETE FROM optictxt;";
+
             try
             {
-                // Veritabanı bağlantısını aç
-                DatabaseConnection dbConnection = new DatabaseConnection();
-                dbConnection.OpenConnection();
-
-                // Verileri getir
-                DataTable optictxtData = GetTableData(dbConnection.GetConnection(), "SELECT * FROM optictxt");
-                DataTable cevapanahtariData = GetTableData(dbConnection.GetConnection(), "SELECT * FROM cevapanahtarı");
-
-                // Sonuçları hesapla
-                DataTable resultTable = CalculateResults(optictxtData, cevapanahtariData);
-
-                // Sonuçları veritabanına kaydet
-                SaveResults(dbConnection.GetConnection(), resultTable);
-
-                // Veritabanı bağlantısını kapat
-                dbConnection.CloseConnection();
-
-                MessageBox.Show("Sonuçlar başarıyla hesaplandı ve kaydedildi.");
+                db.OpenConnection();
+                using (MySqlCommand cmd = new MySqlCommand(query, db.GetConnection()))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                MessageBox.Show("Başarıyla silindi.", "Veritabanı Tabloları", MessageBoxButtons.OK);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
-        }
-        DataTable GetTableData(MySqlConnection connection, string query)
-        {
-            MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
-            DataTable table = new DataTable();
-            adapter.Fill(table);
-            return table;
-        }
-
-        DataTable CalculateResults(DataTable optictxtData, DataTable cevapanahtariData)
-        {   
-            DataTable table = new DataTable();
-
-            return table;
-        }
-
-        void SaveResults(MySqlConnection connection, DataTable results)
-        {
-            foreach (DataRow row in results.Rows)
+            finally
             {
-                string query = @"
-            INSERT INTO ogrenci_sonuclari (ogr_num, ogr_isim, doğru, yanlış, bos, net, puan, durum) 
-            VALUES (@ogr_num, @ogr_isim, @doğru, @yanlış, @bos, @net, @puan, @durum)
-            ON DUPLICATE KEY UPDATE 
-                doğru = VALUES(doğru), 
-                yanlış = VALUES(yanlış), 
-                bos = VALUES(bos), 
-                net = VALUES(net), 
-                puan = VALUES(puan), 
-                durum = VALUES(durum);";
-
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@ogr_num", row["ogr_num"]);
-                    command.Parameters.AddWithValue("@ogr_isim", row["ogr_isim"]);
-                    command.Parameters.AddWithValue("@doğru", row["doğru"]);
-                    command.Parameters.AddWithValue("@yanlış", row["yanlış"]);
-                    command.Parameters.AddWithValue("@bos", row["bos"]);
-                    command.Parameters.AddWithValue("@net", row["net"]);
-                    command.Parameters.AddWithValue("@puan", row["puan"]);
-                    command.Parameters.AddWithValue("@durum", row["durum"]);
-
-                    command.ExecuteNonQuery();
-                }
+                db.CloseConnection();
             }
         }
+        /*private void sonuc_hesapla_Click(object sender, EventArgs e)
+{
+try
+{
+// Veritabanı bağlantısını aç
+DatabaseConnection dbConnection = new DatabaseConnection();
+dbConnection.OpenConnection();
 
+// Verileri getir
+DataTable optictxtData = GetTableData(dbConnection.GetConnection(), "SELECT * FROM optictxt");
+DataTable cevapanahtariData = GetTableData(dbConnection.GetConnection(), "SELECT * FROM cevapanahtarı");
 
+// Sonuçları hesapla
+DataTable resultTable = CalculateResults(optictxtData, cevapanahtariData);
+
+// Sonuçları veritabanına kaydet
+SaveResults(dbConnection.GetConnection(), resultTable);
+
+// Veritabanı bağlantısını kapat
+dbConnection.CloseConnection();
+
+MessageBox.Show("Sonuçlar başarıyla hesaplandı ve kaydedildi.");
+}
+catch (Exception ex)
+{
+throw ex;
+}
+
+}
+DataTable GetTableData(MySqlConnection connection, string query)
+{
+MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
+DataTable table = new DataTable();
+adapter.Fill(table);
+return table;
+}
+
+DataTable CalculateResults(DataTable optictxtData, DataTable cevapanahtariData)
+{   
+DataTable table = new DataTable();
+
+return table;
+}
+
+void SaveResults(MySqlConnection connection, DataTable results)
+{
+foreach (DataRow row in results.Rows)
+{
+string query = @"
+INSERT INTO ogrenci_sonuclari (ogr_num, ogr_isim, doğru, yanlış, bos, net, puan, durum) 
+VALUES (@ogr_num, @ogr_isim, @doğru, @yanlış, @bos, @net, @puan, @durum)
+ON DUPLICATE KEY UPDATE 
+doğru = VALUES(doğru), 
+yanlış = VALUES(yanlış), 
+bos = VALUES(bos), 
+net = VALUES(net), 
+puan = VALUES(puan), 
+durum = VALUES(durum);";
+
+using (MySqlCommand command = new MySqlCommand(query, connection))
+{
+command.Parameters.AddWithValue("@ogr_num", row["ogr_num"]);
+command.Parameters.AddWithValue("@ogr_isim", row["ogr_isim"]);
+command.Parameters.AddWithValue("@doğru", row["doğru"]);
+command.Parameters.AddWithValue("@yanlış", row["yanlış"]);
+command.Parameters.AddWithValue("@bos", row["bos"]);
+command.Parameters.AddWithValue("@net", row["net"]);
+command.Parameters.AddWithValue("@puan", row["puan"]);
+command.Parameters.AddWithValue("@durum", row["durum"]);
+
+command.ExecuteNonQuery();
+}
+}
+}*/
 
     }
 }

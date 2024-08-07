@@ -37,9 +37,10 @@
             geriButton = new Button();
             comboBox1 = new ComboBox();
             label1 = new Label();
-            kitapcikChck = new CheckBox();
+            dKoduChck = new CheckBox();
             buttonListele = new Button();
             sonuc_hesapla = new Button();
+            DbSil = new Button();
             dataGridView1 = new DataGridView();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -100,9 +101,10 @@
             tableLayoutPanel2.Controls.Add(geriButton, 0, 3);
             tableLayoutPanel2.Controls.Add(comboBox1, 4, 2);
             tableLayoutPanel2.Controls.Add(label1, 3, 2);
-            tableLayoutPanel2.Controls.Add(kitapcikChck, 4, 3);
+            tableLayoutPanel2.Controls.Add(dKoduChck, 4, 3);
             tableLayoutPanel2.Controls.Add(buttonListele, 1, 2);
             tableLayoutPanel2.Controls.Add(sonuc_hesapla, 2, 2);
+            tableLayoutPanel2.Controls.Add(DbSil, 0, 2);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(3, 3);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -167,15 +169,16 @@
             label1.Text = "Ders:";
             label1.TextAlign = ContentAlignment.TopRight;
             // 
-            // kitapcikChck
+            // dKoduChck
             // 
-            kitapcikChck.AutoSize = true;
-            kitapcikChck.Location = new Point(917, 259);
-            kitapcikChck.Name = "kitapcikChck";
-            kitapcikChck.Size = new Size(125, 25);
-            kitapcikChck.TabIndex = 5;
-            kitapcikChck.Text = "Kitapçık var.";
-            kitapcikChck.UseVisualStyleBackColor = true;
+            dKoduChck.AutoSize = true;
+            dKoduChck.Location = new Point(917, 259);
+            dKoduChck.Name = "dKoduChck";
+            dKoduChck.Size = new Size(143, 25);
+            dKoduChck.TabIndex = 5;
+            dKoduChck.Text = "Ders kodu yok..";
+            dKoduChck.UseVisualStyleBackColor = true;
+            dKoduChck.CheckedChanged += dKoduChck_CheckedChanged;
             // 
             // buttonListele
             // 
@@ -197,7 +200,17 @@
             sonuc_hesapla.TabIndex = 7;
             sonuc_hesapla.Text = "Sonuçları Hesapla";
             sonuc_hesapla.UseVisualStyleBackColor = true;
-            sonuc_hesapla.Click += sonuc_hesapla_Click;
+            // 
+            // DbSil
+            // 
+            DbSil.Dock = DockStyle.Fill;
+            DbSil.Location = new Point(3, 203);
+            DbSil.Name = "DbSil";
+            DbSil.Size = new Size(234, 50);
+            DbSil.TabIndex = 8;
+            DbSil.Text = "Veri Tabanlarını Sil";
+            DbSil.UseVisualStyleBackColor = true;
+            DbSil.Click += DbSil_Click;
             // 
             // dataGridView1
             // 
@@ -241,8 +254,9 @@
         private DataGridView dataGridView1;
         private ComboBox comboBox1;
         private Label label1;
-        private CheckBox kitapcikChck;
+        private CheckBox dKoduChck;
         private Button buttonListele;
         private Button sonuc_hesapla;
+        private Button DbSil;
     }
 }
