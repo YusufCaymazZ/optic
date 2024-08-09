@@ -200,6 +200,7 @@
             sonuc_hesapla.TabIndex = 7;
             sonuc_hesapla.Text = "Sonuçları Hesapla";
             sonuc_hesapla.UseVisualStyleBackColor = true;
+            sonuc_hesapla.Click += sonuc_hesapla_Click;
             // 
             // DbSil
             // 

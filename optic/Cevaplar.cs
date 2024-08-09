@@ -123,6 +123,7 @@ namespace optic
                 dataTable.Columns[0].ColumnName = "ders_kodu";
                 dataTable.Columns[1].ColumnName = "ders_adi";
                 dataTable.Columns[2].ColumnName = "cevap";
+                dataTable.Columns[3].ColumnName = "kitapcik";
 
                 // Ders kodu sütununu ekle
                 dataTable.Columns.Add("derskodu", typeof(string));
@@ -153,6 +154,7 @@ namespace optic
                 dataTable.Columns[0].ColumnName = "ders_kodu";
                 dataTable.Columns[1].ColumnName = "ders_Adi";
                 dataTable.Columns[2].ColumnName = "cevap";
+                dataTable.Columns[3].ColumnName = "kitapcik";
 
             }
             return dataTable;
@@ -224,7 +226,7 @@ namespace optic
         {
             if (dKoduChck.Checked)
             {
-                DialogResult result = MessageBox.Show("Bu işlemi yapmanız diğer veritabanlarını silecektir.", "Onay", MessageBoxButtons.OKCancel);
+                DialogResult result = MessageBox.Show("Bu işlemi yapmanız diğer veritabanlarını silmeyi unutmayınız. Aksi durumda karışıklığa sebep olabilir.", "Onay", MessageBoxButtons.OKCancel);
                 if (result == DialogResult.OK)
                 {
                     //Burada veritabanları silinmeli
@@ -263,6 +265,90 @@ namespace optic
             }
             finally
             {
+                db.CloseConnection();
+            }
+        }
+
+        private void sonuc_hesapla_Click(object sender, EventArgs e)
+        {
+
+            // DataTable oluşturuyoruz
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ogr_num", typeof(string));
+            dt.Columns.Add("ogr_isim", typeof(string));
+            dt.Columns.Add("ders", typeof(string));
+            dt.Columns.Add("cevap", typeof(string));
+
+            try
+            {
+                // Veritabanı bağlantısını açıyoruz
+                db.OpenConnection();
+
+                // Tüm dersler için sütunları belirliyoruz
+                string[] dersler = { "ders1", "ders2", "ders3", "ders4", "ders5", "ders6" };
+
+                // SQL sorgusunu oluşturuyoruz
+                string query = "SELECT ogr_num, ogr_isim, " + string.Join(", ", dersler) + " FROM optictxt";
+
+                // Sorguyu çalıştırıyoruz
+                MySqlCommand command = new MySqlCommand(query, db.GetConnection());
+                MySqlDataReader reader = command.ExecuteReader();
+
+                // Verileri okumaya başlıyoruz
+                while (reader.Read())
+                {
+                    string ogrNum = reader["ogr_num"].ToString();
+                    string ogrIsim = reader["ogr_isim"].ToString();
+
+                    // Tüm derslerin cevaplarını çekiyoruz ve her biri için ayrı satır ekliyoruz
+                    foreach (string ders in dersler)
+                    {
+                        string cevap = reader[ders].ToString();
+
+                        // Yeni satır ekliyoruz
+                        DataRow row = dt.NewRow();
+                        row["ogr_num"] = ogrNum;
+                        row["ogr_isim"] = ogrIsim;
+                        row["ders"] = ders;
+                        row["cevap"] = cevap;
+                        dt.Rows.Add(row);
+                    }
+                }
+                if (dt.Rows.Count > 0)
+                {
+                    string message = "";
+
+                    // İlk 6 satırı almak için bir döngü
+                    for (int i = 0; i < Math.Min(6, dt.Rows.Count); i++)
+                    {
+                        DataRow row = dt.Rows[i];
+                        string ogrNum = row["ogr_num"].ToString();
+                        string ogrIsim = row["ogr_isim"].ToString();
+                        string ders = row["ders"].ToString();
+                        string cevap = row["cevap"].ToString();
+
+                        message += $"Numara: {ogrNum}, İsim: {ogrIsim}, Ders: {ders}, Cevap: {cevap}\n";
+                    }
+
+                    // Mesajı gösterme
+                    MessageBox.Show(message, "İlk 6 Satır");
+                }
+                else
+                {
+                    MessageBox.Show("DataTable boş.", "Bilgi");
+                }
+
+                // DataTable verilerini istediğiniz gibi işleyebilirsiniz
+                dataGridView1.DataSource = dt; // Örneğin, DataGridView'e atama
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Veri çekme sırasında bir hata oluştu: \n{ex.Message}");
+            }
+            finally
+            {
+                // Bağlantıyı kapatıyoruz
                 db.CloseConnection();
             }
         }

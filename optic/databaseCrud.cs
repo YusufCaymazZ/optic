@@ -823,11 +823,12 @@ public class DataCrud
         {
             dbConnection.OpenConnection();
             string query = @"
-                INSERT INTO cevapanahtarı (ders_kodu, ders_adi, cevap)
-                VALUES (@ders_kodu, @ders_adi, @cevap)
+                INSERT INTO cevapanahtarı (ders_kodu, ders_adi, cevap, kitapcik)
+                VALUES (@ders_kodu, @ders_adi, @cevap, @kitapcik)
                 ON DUPLICATE KEY UPDATE
                 ders_kodu = VALUES(ders_kodu),
-                ders_adi = VALUES(ders_adi)";
+                ders_adi = VALUES(ders_adi),
+                kitapcik = VALUES(kitapcik)";
             MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection());//SYNTAXI DÜZELT
 
             foreach (DataRow row in dataTable.Rows)
@@ -837,6 +838,7 @@ public class DataCrud
                     cmd.Parameters.AddWithValue("@ders_kodu", row["ders_kodu"]);
                     cmd.Parameters.AddWithValue("@ders_adi", row["ders_adi"]);
                     cmd.Parameters.AddWithValue("@cevap", row["cevap"].ToString().ToUpper());
+                    cmd.Parameters.AddWithValue("@kitapcik", row["kitapcik".ToString().ToUpper()]);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -905,6 +907,8 @@ public class DataCrud
         }
         return ders_kodu;
     }
+
+
 
 
 
