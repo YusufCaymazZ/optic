@@ -823,12 +823,13 @@ public class DataCrud
         {
             dbConnection.OpenConnection();
             string query = @"
-                INSERT INTO cevapanahtarı (ders_kodu, ders_adi, cevap, kitapcik)
-                VALUES (@ders_kodu, @ders_adi, @cevap, @kitapcik)
+                INSERT INTO cevapanahtarı (ders_kodu, ders_adi, cevap)
+                VALUES (@ders_kodu, @ders_adi, @cevap)
                 ON DUPLICATE KEY UPDATE
                 ders_kodu = VALUES(ders_kodu),
-                ders_adi = VALUES(ders_adi),
-                kitapcik = VALUES(kitapcik)";
+                ders_adi = VALUES(ders_adi)
+                ";
+            //kitapcik = VALUES(kitapcik)
             MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection());//SYNTAXI DÜZELT
 
             foreach (DataRow row in dataTable.Rows)
@@ -838,7 +839,7 @@ public class DataCrud
                     cmd.Parameters.AddWithValue("@ders_kodu", row["ders_kodu"]);
                     cmd.Parameters.AddWithValue("@ders_adi", row["ders_adi"]);
                     cmd.Parameters.AddWithValue("@cevap", row["cevap"].ToString().ToUpper());
-                    cmd.Parameters.AddWithValue("@kitapcik", row["kitapcik".ToString().ToUpper()]);
+                    //cmd.Parameters.AddWithValue("@kitapcik", row["kitapcik".ToString().ToUpper()]);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -907,6 +908,71 @@ public class DataCrud
         }
         return ders_kodu;
     }
+
+    public void GuncelleOgrIsimleri()
+    {
+        try
+        {
+
+            // ogrlist tablosundan öğrenci numarası, isim ve soyisim bilgilerini al
+            string query = "SELECT ogr_no, ogr_isim, ogr_soyad FROM ogrlist";
+            DataTable ogrListTable = new DataTable();
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, dbConnection.GetConnection()))
+            {
+                adapter.Fill(ogrListTable);
+            }
+
+            // Her öğrenci için isim ve soyisim bilgilerini güncelle
+            foreach (DataRow row in ogrListTable.Rows)
+            {
+                string ogrNo = row["ogr_no"].ToString();
+                string ogrIsim = row["ogr_isim"].ToString();
+                string ogrSoyad = row["ogr_soyad"].ToString();
+                string tamIsim = $"{ogrIsim} {ogrSoyad}";
+
+                // ogrenci_sonuclari tablosunda ogr_isim sütununu güncelle
+                string updateOgrenciSonuclariQuery = @"
+                UPDATE ogrenci_sonuclari 
+                SET ogr_isim = @tamIsim 
+                WHERE ogr_num = @ogrNo";
+
+                using (MySqlCommand cmd = new MySqlCommand(updateOgrenciSonuclariQuery, dbConnection.GetConnection()))
+                {
+                    cmd.Parameters.AddWithValue("@tamIsim", tamIsim);
+                    cmd.Parameters.AddWithValue("@ogrNo", ogrNo);
+                    cmd.ExecuteNonQuery();
+                }
+
+                // optictxt tablosunda ogr_isim sütununu güncelle
+                string updateOpticTxtQuery = @"
+                UPDATE optictxt 
+                SET ogr_isim = @tamIsim 
+                WHERE ogr_num = @ogrNo";
+
+                using (MySqlCommand cmd = new MySqlCommand(updateOpticTxtQuery, dbConnection.GetConnection()))
+                {
+                    cmd.Parameters.AddWithValue("@tamIsim", tamIsim);
+                    cmd.Parameters.AddWithValue("@ogrNo", ogrNo);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            MessageBox.Show("Öğrenci isimleri başarıyla güncellendi.");
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show("MySQL Hatası: " + ex.Message);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Genel Hata: " + ex.Message);
+        }
+        finally
+        {
+            dbConnection.CloseConnection();
+        }
+    }
+
 
 
 

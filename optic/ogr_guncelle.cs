@@ -31,7 +31,7 @@ namespace optic
         private void geribtn_Click(object sender, EventArgs e)
         {
             DatabaseConnection conn = new DatabaseConnection();
-            opticTxt opticTxt = new opticTxt(conn);
+            sinav_islemleri opticTxt = new sinav_islemleri(conn);
             opticTxt.Show();
             this.Hide();
         }
