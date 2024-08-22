@@ -119,7 +119,11 @@ namespace optic
                 dataTable.Columns[0].ColumnName = "ders_kodu";
                 dataTable.Columns[1].ColumnName = "ders_adi";
                 dataTable.Columns[2].ColumnName = "cevap";
-                dataTable.Columns[3].ColumnName = "kitapcik";
+
+                if (dataTable.Columns[3] != null)
+                {
+                    dataTable.Columns[3].ColumnName = "kitapcik";
+                }
 
                 // Ders kodu sütununu ekle
                 dataTable.Columns.Add("derskodu", typeof(string));
@@ -150,7 +154,11 @@ namespace optic
                 dataTable.Columns[0].ColumnName = "ders_kodu";
                 dataTable.Columns[1].ColumnName = "ders_Adi";
                 dataTable.Columns[2].ColumnName = "cevap";
-                //dataTable.Columns[3].ColumnName = "kitapcik";
+                if (dataTable.Columns.Count > 3)
+                {
+                    dataTable.Columns[3].ColumnName = "kitapcik";
+                }
+
 
             }
             return dataTable;
@@ -241,7 +249,8 @@ namespace optic
                 "DELETE FROM optictxt;" +
                 "DELETE FROM ogrenci_sonuclari;" +
                 "DELETE FROM ozelsinav;" +
-                "DELETE FROM cevapanahtarı;";
+                "DELETE FROM cevapanahtarı;" +
+                "DELETE FROM dersler;";
 
             try
             {
@@ -535,83 +544,91 @@ namespace optic
 
         private void button2_Click(object sender, EventArgs e)
         {
-            using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+            if(textBox1.Text == null || textBox1.Text == "Sınav dosyası adı")
             {
-                if (folderDialog.ShowDialog() == DialogResult.OK)
+                MessageBox.Show("Lütfen önce Excel dosya adını giriniz.");
+            }
+            else
+            {
+                using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
                 {
-                    string folderPath = folderDialog.SelectedPath;
-                    string fileName = "" + textBox1.Text + ".xlsx";
-                    string filePath = System.IO.Path.Combine(folderPath, fileName);
-
-                    try
+                    if (folderDialog.ShowDialog() == DialogResult.OK)
                     {
-                        db.OpenConnection();
-                        MySqlCommand cmd = new MySqlCommand("SELECT * FROM ozelsinav", db.GetConnection());
-                        MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-                        DataTable dt = new DataTable();
-                        adapter.Fill(dt);
+                        string folderPath = folderDialog.SelectedPath;
+                        string fileName = "" + textBox1.Text + ".xlsx";
+                        string filePath = System.IO.Path.Combine(folderPath, fileName);
 
-                        using (SpreadsheetDocument document = SpreadsheetDocument.Create(filePath, SpreadsheetDocumentType.Workbook))
+                        try
                         {
-                            WorkbookPart workbookPart = document.AddWorkbookPart();
-                            workbookPart.Workbook = new Workbook();
-                            WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
-                            worksheetPart.Worksheet = new Worksheet(new SheetData());
+                            db.OpenConnection();
+                            MySqlCommand cmd = new MySqlCommand("SELECT * FROM ozelsinav", db.GetConnection());
+                            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                            DataTable dt = new DataTable();
+                            adapter.Fill(dt);
 
-                            Sheets sheets = document.WorkbookPart.Workbook.AppendChild(new Sheets());
-                            Sheet sheet = new Sheet()
+                            using (SpreadsheetDocument document = SpreadsheetDocument.Create(filePath, SpreadsheetDocumentType.Workbook))
                             {
-                                Id = document.WorkbookPart.GetIdOfPart(worksheetPart),
-                                SheetId = 1,
-                                Name = "Sheet1"
-                            };
-                            sheets.Append(sheet);
+                                WorkbookPart workbookPart = document.AddWorkbookPart();
+                                workbookPart.Workbook = new Workbook();
+                                WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+                                worksheetPart.Worksheet = new Worksheet(new SheetData());
 
-                            SheetData sheetData = worksheetPart.Worksheet.GetFirstChild<SheetData>();
-
-                            // Sütun başlıklarını ekleyin
-                            Row headerRow = new Row();
-                            foreach (DataColumn column in dt.Columns)
-                            {
-                                Cell cell = new Cell
+                                Sheets sheets = document.WorkbookPart.Workbook.AppendChild(new Sheets());
+                                Sheet sheet = new Sheet()
                                 {
-                                    DataType = CellValues.String,
-                                    CellValue = new CellValue(column.ColumnName)
+                                    Id = document.WorkbookPart.GetIdOfPart(worksheetPart),
+                                    SheetId = 1,
+                                    Name = "Sheet1"
                                 };
-                                headerRow.AppendChild(cell);
-                            }
-                            sheetData.AppendChild(headerRow);
+                                sheets.Append(sheet);
 
-                            // Verileri ekleyin
-                            foreach (DataRow dtRow in dt.Rows)
-                            {
-                                Row newRow = new Row();
-                                foreach (var item in dtRow.ItemArray)
+                                SheetData sheetData = worksheetPart.Worksheet.GetFirstChild<SheetData>();
+
+                                // Sütun başlıklarını ekleyin
+                                Row headerRow = new Row();
+                                foreach (DataColumn column in dt.Columns)
                                 {
                                     Cell cell = new Cell
                                     {
                                         DataType = CellValues.String,
-                                        CellValue = new CellValue(item.ToString())
+                                        CellValue = new CellValue(column.ColumnName)
                                     };
-                                    newRow.AppendChild(cell);
+                                    headerRow.AppendChild(cell);
                                 }
-                                sheetData.AppendChild(newRow);
+                                sheetData.AppendChild(headerRow);
+
+                                // Verileri ekleyin
+                                foreach (DataRow dtRow in dt.Rows)
+                                {
+                                    Row newRow = new Row();
+                                    foreach (var item in dtRow.ItemArray)
+                                    {
+                                        Cell cell = new Cell
+                                        {
+                                            DataType = CellValues.String,
+                                            CellValue = new CellValue(item.ToString())
+                                        };
+                                        newRow.AppendChild(cell);
+                                    }
+                                    sheetData.AppendChild(newRow);
+                                }
+
+                                workbookPart.Workbook.Save();
                             }
 
-                            workbookPart.Workbook.Save();
+                            MessageBox.Show("Veriler Excel dosyasına başarıyla kaydedildi.");
                         }
-
-                        MessageBox.Show("Veriler Excel dosyasına başarıyla kaydedildi.");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Hata: " + ex.Message);
-                    }
-                    finally
-                    {
-                        db.CloseConnection();
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Hata: " + ex.Message);
+                        }
+                        finally
+                        {
+                            db.CloseConnection();
+                        }
                     }
                 }
+            
             }
         }
 
@@ -732,6 +749,8 @@ namespace optic
                 db.CloseConnection();
             }
         }
+
+        
     }
 }
 

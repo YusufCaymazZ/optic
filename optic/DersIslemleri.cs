@@ -58,10 +58,9 @@ namespace optic
                 ogrDataGrid.DataSource = dataTable;
                 if (ogrDataGrid.Columns.Count > 0)
                 {
-                    ogrDataGrid.Columns[0].HeaderText = "Ders Kodu";
-                    ogrDataGrid.Columns[1].HeaderText = "Öğrenci No";
-                    ogrDataGrid.Columns[2].HeaderText = "Öğrenci İsim";
-                    ogrDataGrid.Columns[3].HeaderText = "Öğrenci Soyisim";
+                    ogrDataGrid.Columns[0].HeaderText = "Öğrenci No";
+                    ogrDataGrid.Columns[1].HeaderText = "Öğrenci İsim";
+                    ogrDataGrid.Columns[2].HeaderText = "Öğrenci Soyisim";
                 }
 
             }
@@ -100,19 +99,18 @@ namespace optic
         private void ogrEkleGuncelle_Click(object sender, EventArgs e)
         {
             string ogrNumarasi = ogrNum.Text;
-            string ogrDersKodu = ogrDersKoduTxt.Text;
             string ogrAdi = ogrAd.Text;
             string ogrSoyad = ogrSoyadi.Text;
 
-            if (ogrNumarasi == null || ogrDersKodu == null || ogrAdi == null || ogrSoyad == null || ogrNumarasi.Trim() == "" ||
-                ogrDersKodu.Trim() == "" || ogrAdi.Trim() == "" || ogrSoyad.Trim() == "")
+            if (ogrNumarasi == null ||  ogrAdi == null || ogrSoyad == null || ogrNumarasi.Trim() == ""
+                 || ogrAdi.Trim() == "" || ogrSoyad.Trim() == "")
             {
                 MessageBox.Show("Lütfen gerekli alanlarda boş kısım bırakmayınız: \n1.Öğrenci Numarası,\n2.Öğrenci Adı,\n3.Öğrenci Soyadı," +
                     "\n4.Ders Kodu.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                data.AddOneOgr(ogrNumarasi, ogrDersKodu, ogrAdi, ogrSoyad);
+                data.AddOneOgr(ogrNumarasi, ogrAdi, ogrSoyad);
             }
             ogrListele_Click(sender, e);
         }
@@ -205,22 +203,7 @@ namespace optic
 
 
 
-        private void ogrListSil_Click(object sender, EventArgs e)
-        {
-            // Ders kodunu al
-            string dersKodu = ogrDersKoduTxt.Text;
-
-            if (string.IsNullOrWhiteSpace(dersKodu))
-            {
-                MessageBox.Show("Lütfen ders kodunu giriniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Veritabanından ders koduna göre kayıtları sil
-            data.DeleteRecordsByCourseCode(dersKodu);
-            ogrListele_Click(sender, e);
-
-        }
+ 
 
         private void ogrDataGrid_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
@@ -287,6 +270,19 @@ namespace optic
 
         private void dersEkle_Click(object sender, EventArgs e)
         {
+            string dersKod = dersKodu.Text;
+            string program = programAdi.Text;
+            string ders = dersAdi.Text;
+            try
+            {
+                data.updateCourse(dersKod,program,ders);
+                dersListele_Click(sender, e);
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             
 
         }
@@ -326,6 +322,8 @@ namespace optic
 
             // Veritabanından ders koduna göre kayıtları sil
             data.DeleteCourseByCourseCode(dersKodu);
+            dersListele_Click(sender, e);
+
 
         }
 

@@ -42,9 +42,6 @@
             ogr_num = new Label();
             label5 = new Label();
             label6 = new Label();
-            label4 = new Label();
-            ogrDersKoduTxt = new TextBox();
-            ogrListSil = new Button();
             tableLayoutPanel8 = new TableLayoutPanel();
             dersListele = new Button();
             dersGetir = new Button();
@@ -104,9 +101,6 @@
             tableLayoutPanel2.Controls.Add(ogr_num, 0, 2);
             tableLayoutPanel2.Controls.Add(label5, 0, 3);
             tableLayoutPanel2.Controls.Add(label6, 0, 4);
-            tableLayoutPanel2.Controls.Add(label4, 0, 5);
-            tableLayoutPanel2.Controls.Add(ogrDersKoduTxt, 1, 5);
-            tableLayoutPanel2.Controls.Add(ogrListSil, 1, 7);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(3, 3);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -153,19 +147,21 @@
             ogrGetirBtn.Name = "ogrGetirBtn";
             ogrGetirBtn.Size = new Size(247, 36);
             ogrGetirBtn.TabIndex = 1;
-            ogrGetirBtn.Text = "Öğreci Getir";
+            ogrGetirBtn.Text = "Öğrenci Getir";
             ogrGetirBtn.UseVisualStyleBackColor = true;
             ogrGetirBtn.Click += ogrGetirBtn_Click;
             // 
             // ogrExcellBtn
             // 
+            ogrExcellBtn.BackColor = Color.DodgerBlue;
             ogrExcellBtn.Dock = DockStyle.Fill;
+            ogrExcellBtn.ForeColor = Color.Transparent;
             ogrExcellBtn.Location = new Point(3, 213);
             ogrExcellBtn.Name = "ogrExcellBtn";
             ogrExcellBtn.Size = new Size(327, 36);
             ogrExcellBtn.TabIndex = 4;
-            ogrExcellBtn.Text = "Öğrenci Excell Ekle";
-            ogrExcellBtn.UseVisualStyleBackColor = true;
+            ogrExcellBtn.Text = "Öğrenci Excel Ekle";
+            ogrExcellBtn.UseVisualStyleBackColor = false;
             ogrExcellBtn.Click += ogrExcellBtn_Click;
             // 
             // ogrNum
@@ -235,36 +231,6 @@
             label6.Text = "Öğrenci Soyadı";
             label6.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Dock = DockStyle.Fill;
-            label4.Location = new Point(3, 177);
-            label4.Name = "label4";
-            label4.Size = new Size(327, 33);
-            label4.TabIndex = 12;
-            label4.Text = "Ders Kodu";
-            label4.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // ogrDersKoduTxt
-            // 
-            ogrDersKoduTxt.Dock = DockStyle.Fill;
-            ogrDersKoduTxt.Location = new Point(336, 180);
-            ogrDersKoduTxt.Name = "ogrDersKoduTxt";
-            ogrDersKoduTxt.Size = new Size(247, 27);
-            ogrDersKoduTxt.TabIndex = 13;
-            // 
-            // ogrListSil
-            // 
-            ogrListSil.Dock = DockStyle.Fill;
-            ogrListSil.Location = new Point(336, 255);
-            ogrListSil.Name = "ogrListSil";
-            ogrListSil.Size = new Size(247, 31);
-            ogrListSil.TabIndex = 16;
-            ogrListSil.Text = "Öğrenci Listesini Sil";
-            ogrListSil.UseVisualStyleBackColor = true;
-            ogrListSil.Click += ogrListSil_Click;
-            // 
             // tableLayoutPanel8
             // 
             tableLayoutPanel8.ColumnCount = 2;
@@ -281,7 +247,7 @@
             tableLayoutPanel8.Controls.Add(getirilecekDers, 0, 1);
             tableLayoutPanel8.Controls.Add(dersEkle, 1, 5);
             tableLayoutPanel8.Controls.Add(dersExcell, 0, 6);
-            tableLayoutPanel8.Controls.Add(geriButton, 1, 6);
+            tableLayoutPanel8.Controls.Add(geriButton, 0, 7);
             tableLayoutPanel8.Controls.Add(dersSilButton, 0, 5);
             tableLayoutPanel8.Dock = DockStyle.Fill;
             tableLayoutPanel8.Location = new Point(3, 333);
@@ -293,8 +259,8 @@
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
-            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 42F));
-            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 56F));
+            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel8.Size = new Size(586, 325);
             tableLayoutPanel8.TabIndex = 3;
@@ -401,24 +367,28 @@
             // 
             // dersExcell
             // 
+            dersExcell.BackColor = Color.DodgerBlue;
             dersExcell.Dock = DockStyle.Fill;
+            dersExcell.ForeColor = Color.Transparent;
             dersExcell.Location = new Point(3, 229);
             dersExcell.Name = "dersExcell";
-            dersExcell.Size = new Size(346, 36);
+            dersExcell.Size = new Size(346, 42);
             dersExcell.TabIndex = 10;
-            dersExcell.Text = "Ders Excell Ekle";
-            dersExcell.UseVisualStyleBackColor = true;
+            dersExcell.Text = "Ders Excel Ekle";
+            dersExcell.UseVisualStyleBackColor = false;
             dersExcell.Click += dersExcell_Click;
             // 
             // geriButton
             // 
+            geriButton.BackColor = Color.IndianRed;
             geriButton.Dock = DockStyle.Fill;
-            geriButton.Location = new Point(355, 229);
+            geriButton.ForeColor = SystemColors.ButtonFace;
+            geriButton.Location = new Point(3, 277);
             geriButton.Name = "geriButton";
-            geriButton.Size = new Size(228, 36);
+            geriButton.Size = new Size(346, 45);
             geriButton.TabIndex = 11;
-            geriButton.Text = "Geri";
-            geriButton.UseVisualStyleBackColor = true;
+            geriButton.Text = "Geri Dön";
+            geriButton.UseVisualStyleBackColor = false;
             geriButton.Click += geriButton_Click_1;
             // 
             // dersSilButton
@@ -434,22 +404,30 @@
             // 
             // dersDataGrid
             // 
+            dersDataGrid.AllowUserToAddRows = false;
+            dersDataGrid.AllowUserToDeleteRows = false;
+            dersDataGrid.AllowUserToOrderColumns = true;
             dersDataGrid.BackgroundColor = Color.Navy;
             dersDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dersDataGrid.Dock = DockStyle.Fill;
             dersDataGrid.Location = new Point(595, 333);
             dersDataGrid.Name = "dersDataGrid";
+            dersDataGrid.ReadOnly = true;
             dersDataGrid.Size = new Size(586, 325);
             dersDataGrid.TabIndex = 4;
             dersDataGrid.RowPostPaint += dersDataGrid_RowPostPaint;
             // 
             // ogrDataGrid
             // 
+            ogrDataGrid.AllowUserToAddRows = false;
+            ogrDataGrid.AllowUserToDeleteRows = false;
+            ogrDataGrid.AllowUserToOrderColumns = true;
             ogrDataGrid.BackgroundColor = Color.Navy;
             ogrDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             ogrDataGrid.Dock = DockStyle.Fill;
             ogrDataGrid.Location = new Point(595, 3);
             ogrDataGrid.Name = "ogrDataGrid";
+            ogrDataGrid.ReadOnly = true;
             ogrDataGrid.Size = new Size(586, 324);
             ogrDataGrid.TabIndex = 5;
             // 
@@ -512,9 +490,6 @@
         private Label label6;
         private DataGridView ogrDataGrid;
         private Button ogrEkleGuncelle;
-        private Label label4;
-        private TextBox ogrDersKoduTxt;
-        private Button ogrListSil;
         private Button dersSilButton;
     }
 }

@@ -32,10 +32,7 @@ namespace optic
 
 
 
-        private void AddDataToGridView()
-        {
-
-        }
+        
         private void InitializeDataGridView()
         {
             // DataGridView nesnesini oluştur ve ayarlarını yapılandır

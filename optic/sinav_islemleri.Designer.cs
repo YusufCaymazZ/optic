@@ -128,7 +128,7 @@
             tableLayoutPanel3.ColumnCount = 3;
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 68.82494F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 31.17506F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 166F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 227F));
             tableLayoutPanel3.Controls.Add(tableLayoutPanel10, 0, 0);
             tableLayoutPanel3.Controls.Add(optic_txt, 2, 1);
             tableLayoutPanel3.Controls.Add(button4, 2, 2);
@@ -154,28 +154,28 @@
             tableLayoutPanel10.RowCount = 2;
             tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel10.Size = new Size(360, 83);
+            tableLayoutPanel10.Size = new Size(318, 83);
             tableLayoutPanel10.TabIndex = 2;
             // 
             // optic_txt
             // 
             optic_txt.Dock = DockStyle.Bottom;
-            optic_txt.Location = new Point(534, 93);
+            optic_txt.Location = new Point(473, 93);
             optic_txt.Name = "optic_txt";
-            optic_txt.Size = new Size(161, 43);
+            optic_txt.Size = new Size(222, 43);
             optic_txt.TabIndex = 3;
-            optic_txt.Text = "Optik .txt Ekle";
+            optic_txt.Text = "Optik .txt Ekle/Seç";
             optic_txt.UseVisualStyleBackColor = true;
             optic_txt.Click += optic_txt_Click;
             // 
             // button4
             // 
             button4.Dock = DockStyle.Fill;
-            button4.Location = new Point(534, 142);
+            button4.Location = new Point(473, 142);
             button4.Name = "button4";
-            button4.Size = new Size(161, 48);
+            button4.Size = new Size(222, 48);
             button4.TabIndex = 4;
-            button4.Text = "Cevapları Ekle";
+            button4.Text = "Sonuç ve Cevap İşlemleri";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
@@ -226,13 +226,15 @@
             // 
             // geri_button
             // 
+            geri_button.BackColor = Color.IndianRed;
             geri_button.Dock = DockStyle.Fill;
+            geri_button.ForeColor = Color.Transparent;
             geri_button.Location = new Point(3, 3);
             geri_button.Name = "geri_button";
             geri_button.Size = new Size(108, 39);
             geri_button.TabIndex = 1;
             geri_button.Text = "Geri";
-            geri_button.UseVisualStyleBackColor = true;
+            geri_button.UseVisualStyleBackColor = false;
             geri_button.Click += geri_button_Click;
             // 
             // tableLayoutPanel5

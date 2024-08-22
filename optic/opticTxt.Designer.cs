@@ -45,6 +45,9 @@
             label9 = new Label();
             label10 = new Label();
             tableLayoutPanel4 = new TableLayoutPanel();
+            tableLayoutPanel41 = new TableLayoutPanel();
+            label25 = new Label();
+            label26 = new Label();
             tableLayoutPanel28 = new TableLayoutPanel();
             d1Bas = new TextBox();
             d1Bit = new TextBox();
@@ -62,6 +65,9 @@
             ogrAdBit = new TextBox();
             label1 = new Label();
             label2 = new Label();
+            tableLayoutPanel40 = new TableLayoutPanel();
+            label23 = new Label();
+            label24 = new Label();
             tableLayoutPanel6 = new TableLayoutPanel();
             tableLayoutPanel26 = new TableLayoutPanel();
             KitapcikBas = new TextBox();
@@ -88,6 +94,9 @@
             tableLayoutPanel11 = new TableLayoutPanel();
             tableLayoutPanel12 = new TableLayoutPanel();
             tableLayoutPanel14 = new TableLayoutPanel();
+            tableLayoutPanel42 = new TableLayoutPanel();
+            label27 = new Label();
+            label28 = new Label();
             tableLayoutPanel33 = new TableLayoutPanel();
             d6Bas = new TextBox();
             d6Bit = new TextBox();
@@ -110,6 +119,9 @@
             label14 = new Label();
             label15 = new Label();
             tableLayoutPanel16 = new TableLayoutPanel();
+            tableLayoutPanel43 = new TableLayoutPanel();
+            label29 = new Label();
+            label30 = new Label();
             tableLayoutPanel38 = new TableLayoutPanel();
             c5Bas = new TextBox();
             c5Bit = new TextBox();
@@ -129,9 +141,9 @@
             tableLayoutPanel18 = new TableLayoutPanel();
             label21 = new Label();
             tableLayoutPanel19 = new TableLayoutPanel();
+            label19 = new Label();
             tableLayoutPanel20 = new TableLayoutPanel();
             tableLayoutPanel21 = new TableLayoutPanel();
-            label19 = new Label();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
@@ -139,11 +151,13 @@
             tableLayoutPanel30.SuspendLayout();
             tableLayoutPanel29.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
+            tableLayoutPanel41.SuspendLayout();
             tableLayoutPanel28.SuspendLayout();
             tableLayoutPanel27.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
             tableLayoutPanel23.SuspendLayout();
             tableLayoutPanel22.SuspendLayout();
+            tableLayoutPanel40.SuspendLayout();
             tableLayoutPanel6.SuspendLayout();
             tableLayoutPanel26.SuspendLayout();
             tableLayoutPanel25.SuspendLayout();
@@ -154,6 +168,7 @@
             tableLayoutPanel10.SuspendLayout();
             tableLayoutPanel12.SuspendLayout();
             tableLayoutPanel14.SuspendLayout();
+            tableLayoutPanel42.SuspendLayout();
             tableLayoutPanel33.SuspendLayout();
             tableLayoutPanel32.SuspendLayout();
             tableLayoutPanel15.SuspendLayout();
@@ -161,13 +176,14 @@
             tableLayoutPanel35.SuspendLayout();
             tableLayoutPanel34.SuspendLayout();
             tableLayoutPanel16.SuspendLayout();
+            tableLayoutPanel43.SuspendLayout();
             tableLayoutPanel38.SuspendLayout();
             tableLayoutPanel37.SuspendLayout();
             tableLayoutPanel17.SuspendLayout();
             tableLayoutPanel39.SuspendLayout();
             tableLayoutPanel13.SuspendLayout();
             tableLayoutPanel18.SuspendLayout();
-            tableLayoutPanel21.SuspendLayout();
+            tableLayoutPanel19.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -367,6 +383,7 @@
             tableLayoutPanel4.ColumnCount = 2;
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.Controls.Add(tableLayoutPanel41, 0, 0);
             tableLayoutPanel4.Controls.Add(tableLayoutPanel28, 0, 2);
             tableLayoutPanel4.Controls.Add(tableLayoutPanel27, 0, 1);
             tableLayoutPanel4.Controls.Add(label6, 1, 1);
@@ -378,8 +395,45 @@
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 54F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel4.Size = new Size(287, 156);
             tableLayoutPanel4.TabIndex = 1;
+            // 
+            // tableLayoutPanel41
+            // 
+            tableLayoutPanel41.ColumnCount = 2;
+            tableLayoutPanel41.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel41.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 71F));
+            tableLayoutPanel41.Controls.Add(label25, 0, 0);
+            tableLayoutPanel41.Controls.Add(label26, 1, 0);
+            tableLayoutPanel41.Location = new Point(3, 3);
+            tableLayoutPanel41.Name = "tableLayoutPanel41";
+            tableLayoutPanel41.RowCount = 1;
+            tableLayoutPanel41.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel41.Size = new Size(137, 45);
+            tableLayoutPanel41.TabIndex = 6;
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Dock = DockStyle.Bottom;
+            label25.Font = new Font("Century Gothic", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label25.Location = new Point(3, 29);
+            label25.Name = "label25";
+            label25.Size = new Size(60, 16);
+            label25.TabIndex = 0;
+            label25.Text = "Başlangıç";
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Dock = DockStyle.Bottom;
+            label26.Font = new Font("Century Gothic", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label26.Location = new Point(69, 29);
+            label26.Name = "label26";
+            label26.Size = new Size(65, 16);
+            label26.TabIndex = 1;
+            label26.Text = "Uzunluk";
             // 
             // tableLayoutPanel28
             // 
@@ -474,12 +528,13 @@
             // tableLayoutPanel5
             // 
             tableLayoutPanel5.ColumnCount = 2;
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49.8257828F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50.1742172F));
             tableLayoutPanel5.Controls.Add(tableLayoutPanel23, 0, 1);
             tableLayoutPanel5.Controls.Add(tableLayoutPanel22, 0, 2);
             tableLayoutPanel5.Controls.Add(label1, 1, 1);
             tableLayoutPanel5.Controls.Add(label2, 1, 2);
+            tableLayoutPanel5.Controls.Add(tableLayoutPanel40, 0, 0);
             tableLayoutPanel5.Dock = DockStyle.Fill;
             tableLayoutPanel5.Location = new Point(3, 3);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -579,6 +634,42 @@
             label2.TabIndex = 4;
             label2.Text = "Öğrenci İsim";
             label2.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // tableLayoutPanel40
+            // 
+            tableLayoutPanel40.ColumnCount = 2;
+            tableLayoutPanel40.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel40.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 71F));
+            tableLayoutPanel40.Controls.Add(label23, 0, 0);
+            tableLayoutPanel40.Controls.Add(label24, 1, 0);
+            tableLayoutPanel40.Location = new Point(3, 3);
+            tableLayoutPanel40.Name = "tableLayoutPanel40";
+            tableLayoutPanel40.RowCount = 1;
+            tableLayoutPanel40.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel40.Size = new Size(137, 46);
+            tableLayoutPanel40.TabIndex = 5;
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Dock = DockStyle.Bottom;
+            label23.Font = new Font("Century Gothic", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label23.Location = new Point(3, 30);
+            label23.Name = "label23";
+            label23.Size = new Size(60, 16);
+            label23.TabIndex = 0;
+            label23.Text = "Başlangıç";
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.Dock = DockStyle.Bottom;
+            label24.Font = new Font("Century Gothic", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label24.Location = new Point(69, 30);
+            label24.Name = "label24";
+            label24.Size = new Size(65, 16);
+            label24.TabIndex = 1;
+            label24.Text = "Uzunluk";
             // 
             // tableLayoutPanel6
             // 
@@ -859,13 +950,15 @@
             // 
             // geri_button
             // 
+            geri_button.BackColor = Color.IndianRed;
             geri_button.Dock = DockStyle.Fill;
+            geri_button.ForeColor = SystemColors.ButtonFace;
             geri_button.Location = new Point(3, 55);
             geri_button.Name = "geri_button";
             geri_button.Size = new Size(137, 46);
             geri_button.TabIndex = 0;
             geri_button.Text = "Geri";
-            geri_button.UseVisualStyleBackColor = true;
+            geri_button.UseVisualStyleBackColor = false;
             geri_button.Click += geri_button_Click;
             // 
             // tableLayoutPanel11
@@ -906,6 +999,7 @@
             tableLayoutPanel14.ColumnCount = 2;
             tableLayoutPanel14.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel14.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel14.Controls.Add(tableLayoutPanel42, 0, 0);
             tableLayoutPanel14.Controls.Add(tableLayoutPanel33, 0, 2);
             tableLayoutPanel14.Controls.Add(tableLayoutPanel32, 0, 1);
             tableLayoutPanel14.Controls.Add(label11, 1, 1);
@@ -917,8 +1011,45 @@
             tableLayoutPanel14.RowStyles.Add(new RowStyle(SizeType.Absolute, 51F));
             tableLayoutPanel14.RowStyles.Add(new RowStyle(SizeType.Percent, 49.52381F));
             tableLayoutPanel14.RowStyles.Add(new RowStyle(SizeType.Percent, 50.47619F));
+            tableLayoutPanel14.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel14.Size = new Size(287, 156);
             tableLayoutPanel14.TabIndex = 0;
+            // 
+            // tableLayoutPanel42
+            // 
+            tableLayoutPanel42.ColumnCount = 2;
+            tableLayoutPanel42.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel42.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 71F));
+            tableLayoutPanel42.Controls.Add(label27, 0, 0);
+            tableLayoutPanel42.Controls.Add(label28, 1, 0);
+            tableLayoutPanel42.Location = new Point(3, 3);
+            tableLayoutPanel42.Name = "tableLayoutPanel42";
+            tableLayoutPanel42.RowCount = 1;
+            tableLayoutPanel42.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel42.Size = new Size(137, 45);
+            tableLayoutPanel42.TabIndex = 6;
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Dock = DockStyle.Bottom;
+            label27.Font = new Font("Century Gothic", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label27.Location = new Point(3, 29);
+            label27.Name = "label27";
+            label27.Size = new Size(60, 16);
+            label27.TabIndex = 0;
+            label27.Text = "Başlangıç";
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Dock = DockStyle.Bottom;
+            label28.Font = new Font("Century Gothic", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label28.Location = new Point(69, 29);
+            label28.Name = "label28";
+            label28.Size = new Size(65, 16);
+            label28.TabIndex = 1;
+            label28.Text = "Uzunluk";
             // 
             // tableLayoutPanel33
             // 
@@ -1171,6 +1302,7 @@
             tableLayoutPanel16.ColumnCount = 2;
             tableLayoutPanel16.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel16.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel16.Controls.Add(tableLayoutPanel43, 0, 0);
             tableLayoutPanel16.Controls.Add(tableLayoutPanel38, 0, 2);
             tableLayoutPanel16.Controls.Add(tableLayoutPanel37, 0, 1);
             tableLayoutPanel16.Controls.Add(label16, 1, 1);
@@ -1182,8 +1314,45 @@
             tableLayoutPanel16.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel16.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel16.RowStyles.Add(new RowStyle(SizeType.Absolute, 53F));
+            tableLayoutPanel16.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel16.Size = new Size(287, 156);
             tableLayoutPanel16.TabIndex = 2;
+            // 
+            // tableLayoutPanel43
+            // 
+            tableLayoutPanel43.ColumnCount = 2;
+            tableLayoutPanel43.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel43.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 71F));
+            tableLayoutPanel43.Controls.Add(label29, 0, 0);
+            tableLayoutPanel43.Controls.Add(label30, 1, 0);
+            tableLayoutPanel43.Location = new Point(3, 3);
+            tableLayoutPanel43.Name = "tableLayoutPanel43";
+            tableLayoutPanel43.RowCount = 1;
+            tableLayoutPanel43.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel43.Size = new Size(137, 45);
+            tableLayoutPanel43.TabIndex = 6;
+            // 
+            // label29
+            // 
+            label29.AutoSize = true;
+            label29.Dock = DockStyle.Bottom;
+            label29.Font = new Font("Century Gothic", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label29.Location = new Point(3, 29);
+            label29.Name = "label29";
+            label29.Size = new Size(60, 16);
+            label29.TabIndex = 0;
+            label29.Text = "Başlangıç";
+            // 
+            // label30
+            // 
+            label30.AutoSize = true;
+            label30.Dock = DockStyle.Bottom;
+            label30.Font = new Font("Century Gothic", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label30.Location = new Point(69, 29);
+            label30.Name = "label30";
+            label30.Size = new Size(65, 16);
+            label30.TabIndex = 1;
+            label30.Text = "Uzunluk";
             // 
             // tableLayoutPanel38
             // 
@@ -1404,15 +1573,27 @@
             // 
             tableLayoutPanel19.ColumnCount = 1;
             tableLayoutPanel19.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel19.Controls.Add(label19, 0, 1);
             tableLayoutPanel19.Dock = DockStyle.Fill;
             tableLayoutPanel19.Location = new Point(296, 3);
             tableLayoutPanel19.Name = "tableLayoutPanel19";
             tableLayoutPanel19.RowCount = 3;
-            tableLayoutPanel19.RowStyles.Add(new RowStyle(SizeType.Percent, 67.88991F));
-            tableLayoutPanel19.RowStyles.Add(new RowStyle(SizeType.Percent, 32.1100922F));
-            tableLayoutPanel19.RowStyles.Add(new RowStyle(SizeType.Absolute, 46F));
+            tableLayoutPanel19.RowStyles.Add(new RowStyle(SizeType.Percent, 37.8378372F));
+            tableLayoutPanel19.RowStyles.Add(new RowStyle(SizeType.Percent, 62.1621628F));
+            tableLayoutPanel19.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
             tableLayoutPanel19.Size = new Size(287, 156);
             tableLayoutPanel19.TabIndex = 1;
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Dock = DockStyle.Bottom;
+            label19.Font = new Font("Century Gothic", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label19.Location = new Point(3, 76);
+            label19.Name = "label19";
+            label19.Size = new Size(281, 32);
+            label19.TabIndex = 0;
+            label19.Text = "Optikte olmayan sütunlar için metin kutularınd ayer alan \"0\" değerini değiştirmeyiniz.";
             // 
             // tableLayoutPanel20
             // 
@@ -1433,7 +1614,6 @@
             // 
             tableLayoutPanel21.ColumnCount = 1;
             tableLayoutPanel21.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel21.Controls.Add(label19, 0, 2);
             tableLayoutPanel21.Dock = DockStyle.Fill;
             tableLayoutPanel21.Location = new Point(296, 165);
             tableLayoutPanel21.Name = "tableLayoutPanel21";
@@ -1443,17 +1623,6 @@
             tableLayoutPanel21.RowStyles.Add(new RowStyle(SizeType.Absolute, 67F));
             tableLayoutPanel21.Size = new Size(287, 157);
             tableLayoutPanel21.TabIndex = 3;
-            // 
-            // label19
-            // 
-            label19.AutoSize = true;
-            label19.Dock = DockStyle.Fill;
-            label19.Font = new Font("Century Gothic", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label19.Location = new Point(3, 90);
-            label19.Name = "label19";
-            label19.Size = new Size(281, 67);
-            label19.TabIndex = 0;
-            label19.Text = ".txt dosyasında yer almayan sütunlar için Text Kutularını boş bırakın.";
             // 
             // opticTxt
             // 
@@ -1481,6 +1650,8 @@
             tableLayoutPanel29.PerformLayout();
             tableLayoutPanel4.ResumeLayout(false);
             tableLayoutPanel4.PerformLayout();
+            tableLayoutPanel41.ResumeLayout(false);
+            tableLayoutPanel41.PerformLayout();
             tableLayoutPanel28.ResumeLayout(false);
             tableLayoutPanel28.PerformLayout();
             tableLayoutPanel27.ResumeLayout(false);
@@ -1491,6 +1662,8 @@
             tableLayoutPanel23.PerformLayout();
             tableLayoutPanel22.ResumeLayout(false);
             tableLayoutPanel22.PerformLayout();
+            tableLayoutPanel40.ResumeLayout(false);
+            tableLayoutPanel40.PerformLayout();
             tableLayoutPanel6.ResumeLayout(false);
             tableLayoutPanel6.PerformLayout();
             tableLayoutPanel26.ResumeLayout(false);
@@ -1507,6 +1680,8 @@
             tableLayoutPanel12.ResumeLayout(false);
             tableLayoutPanel14.ResumeLayout(false);
             tableLayoutPanel14.PerformLayout();
+            tableLayoutPanel42.ResumeLayout(false);
+            tableLayoutPanel42.PerformLayout();
             tableLayoutPanel33.ResumeLayout(false);
             tableLayoutPanel33.PerformLayout();
             tableLayoutPanel32.ResumeLayout(false);
@@ -1521,6 +1696,8 @@
             tableLayoutPanel34.PerformLayout();
             tableLayoutPanel16.ResumeLayout(false);
             tableLayoutPanel16.PerformLayout();
+            tableLayoutPanel43.ResumeLayout(false);
+            tableLayoutPanel43.PerformLayout();
             tableLayoutPanel38.ResumeLayout(false);
             tableLayoutPanel38.PerformLayout();
             tableLayoutPanel37.ResumeLayout(false);
@@ -1532,8 +1709,8 @@
             tableLayoutPanel13.ResumeLayout(false);
             tableLayoutPanel18.ResumeLayout(false);
             tableLayoutPanel18.PerformLayout();
-            tableLayoutPanel21.ResumeLayout(false);
-            tableLayoutPanel21.PerformLayout();
+            tableLayoutPanel19.ResumeLayout(false);
+            tableLayoutPanel19.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -1634,7 +1811,6 @@
         private Label label16;
         private Label label17;
         private Label label18;
-        private Label label19;
         private ComboBox opticCombo;
         private Label label20;
         private Button opticEkle;
@@ -1642,5 +1818,18 @@
         private Label label21;
         private Label label22;
         private Button button2;
+        private TableLayoutPanel tableLayoutPanel41;
+        private Label label25;
+        private Label label26;
+        private TableLayoutPanel tableLayoutPanel40;
+        private Label label23;
+        private Label label24;
+        private TableLayoutPanel tableLayoutPanel42;
+        private Label label27;
+        private Label label28;
+        private TableLayoutPanel tableLayoutPanel43;
+        private Label label29;
+        private Label label30;
+        private Label label19;
     }
 }

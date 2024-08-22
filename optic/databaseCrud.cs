@@ -277,8 +277,8 @@ public class DataCrud
         try
         {
             dbConnection.OpenConnection();
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM optictxt WHERE CHAR_LENGTH(ogr_num) != 9 " +
-                "OR ogr_num IN (SELECT ogr_num FROM optictxt GROUP BY ogr_num HAVING COUNT(*) > 1);", dbConnection.GetConnection());
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM optictxt WHERE " +
+                " ogr_num IN (SELECT ogr_num FROM optictxt GROUP BY ogr_num HAVING COUNT(*) > 1);", dbConnection.GetConnection());
             MySqlDataReader reader = cmd.ExecuteReader();
 
             while (reader.Read())
@@ -416,10 +416,7 @@ public class DataCrud
                 ogr_isim = VALUES(ogr_isim),
                 ogr_soyad = VALUES(ogr_soyad)";
             MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection());//SYNTAXI DÜZELT
-            foreach (DataColumn column in dataTable.Columns)
-            {
-                MessageBox.Show(column.ColumnName);
-            }
+           
 
             foreach (DataRow row in dataTable.Rows)
             {
@@ -670,14 +667,13 @@ public class DataCrud
         return dataTable;
     }
 
-    public void AddOneOgr(string ogrNum, string dersKod, string ogrAd, string ogrsoyad)
+    public void AddOneOgr(string ogrNum, string ogrAd, string ogrsoyad)
     {
         dbConnection.OpenConnection();
         string query = @"
-                INSERT INTO ogrlist (ders_kodu, ogr_no, ogr_isim, ogr_soyad)
-                VALUES (@ders_kodu, @ogr_no, @ogr_isim, @ogr_soyad)
+                INSERT INTO ogrlist ( ogr_no, ogr_isim, ogr_soyad)
+                VALUES ( @ogr_no, @ogr_isim, @ogr_soyad)
                 ON DUPLICATE KEY UPDATE
-                ders_kodu = VALUES(ders_kodu),
                 ogr_isim = VALUES(ogr_isim),
                 ogr_soyad = VALUES(ogr_soyad)";
         MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection()); // Tablo adı veya sorguyu ihtiyacınıza göre değiştirin
@@ -687,7 +683,6 @@ public class DataCrud
             cmd.Parameters.AddWithValue("@ogr_no", ogrNum);
             cmd.Parameters.AddWithValue("@ogr_isim", ogrAd);
             cmd.Parameters.AddWithValue("@ogr_soyad", ogrsoyad);
-            cmd.Parameters.AddWithValue("@ders_kodu", dersKod);
             cmd.ExecuteNonQuery();
         }
         catch (Exception ex)
@@ -823,11 +818,12 @@ public class DataCrud
         {
             dbConnection.OpenConnection();
             string query = @"
-                INSERT INTO cevapanahtarı (ders_kodu, ders_adi, cevap)
-                VALUES (@ders_kodu, @ders_adi, @cevap)
+                INSERT INTO cevapanahtarı (ders_kodu, ders_adi, cevap, kitapcik)
+                VALUES (@ders_kodu, @ders_adi, @cevap, @kitapcik)
                 ON DUPLICATE KEY UPDATE
                 ders_kodu = VALUES(ders_kodu),
-                ders_adi = VALUES(ders_adi)
+                ders_adi = VALUES(ders_adi),
+                kitapcik = VALUES(kitapcik)
                 ";
             //kitapcik = VALUES(kitapcik)
             MySqlCommand cmd = new MySqlCommand(query, dbConnection.GetConnection());//SYNTAXI DÜZELT
@@ -839,7 +835,15 @@ public class DataCrud
                     cmd.Parameters.AddWithValue("@ders_kodu", row["ders_kodu"]);
                     cmd.Parameters.AddWithValue("@ders_adi", row["ders_adi"]);
                     cmd.Parameters.AddWithValue("@cevap", row["cevap"].ToString().ToUpper());
-                    //cmd.Parameters.AddWithValue("@kitapcik", row["kitapcik".ToString().ToUpper()]);
+                    if(dataTable.Columns.Count>3)
+                    {
+                        cmd.Parameters.AddWithValue("@kitapcik", row["kitapcik".ToString().ToUpper()]);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@kitapcik", null);
+                    }
+                    
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -969,6 +973,71 @@ public class DataCrud
         }
         finally
         {
+            dbConnection.CloseConnection();
+        }
+    }
+
+    public void updateCourse(string dersKodu, string prgram, string ders)
+    {
+        try
+        {
+            // Veritabanı bağlantısını aç
+            dbConnection.OpenConnection();
+
+            // Önce veri var mı kontrol et
+            string checkQuery = "SELECT COUNT(*) FROM dersler WHERE dersKod = @dersKod";
+            using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, dbConnection.GetConnection()))
+            {
+                checkCmd.Parameters.AddWithValue("@dersKod", dersKodu);
+                int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                // Eğer veri yoksa ekle
+                if (count == 0)
+                {
+                    string insertQuery = @"
+                    INSERT INTO dersler (dersKod, program, ders) 
+                    VALUES (@dersKod, @program, @dersAdi)";
+
+                    using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, dbConnection.GetConnection()))
+                    {
+                        // Parametreleri ekle
+                        insertCmd.Parameters.AddWithValue("@dersKod", dersKodu);
+                        insertCmd.Parameters.AddWithValue("@program", prgram);
+                        insertCmd.Parameters.AddWithValue("@dersAdi", ders);
+
+                        // Sorguyu çalıştır
+                        insertCmd.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Ders başarıyla eklendi.");
+                }
+                else
+                {
+                    MessageBox.Show("Bu ders zaten mevcut.");
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            // MySQL hatalarını yakala
+            MessageBox.Show("MySQL Hatası: " + ex.Message);
+            if (ex.InnerException != null)
+            {
+                MessageBox.Show("İç Hata: " + ex.InnerException.Message);
+            }
+        }
+        catch (Exception ex)
+        {
+            // Diğer hataları yakala
+            MessageBox.Show("Genel Hata: " + ex.Message);
+            if (ex.InnerException != null)
+            {
+                MessageBox.Show("İç Hata: " + ex.InnerException.Message);
+            }
+        }
+        finally
+        {
+            // Bağlantıyı kapat
             dbConnection.CloseConnection();
         }
     }

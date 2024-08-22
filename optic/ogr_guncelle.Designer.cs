@@ -496,30 +496,35 @@
             // 
             // geribtn
             // 
+            geribtn.BackColor = Color.IndianRed;
             geribtn.Dock = DockStyle.Bottom;
+            geribtn.ForeColor = Color.Transparent;
             geribtn.Location = new Point(3, 138);
             geribtn.Name = "geribtn";
             geribtn.Size = new Size(151, 32);
             geribtn.TabIndex = 3;
             geribtn.Text = "Geri";
-            geribtn.UseVisualStyleBackColor = true;
+            geribtn.UseVisualStyleBackColor = false;
             geribtn.Click += geribtn_Click;
             // 
             // ogrGetir
             // 
+            ogrGetir.BackColor = SystemColors.ActiveCaption;
             ogrGetir.Dock = DockStyle.Bottom;
             ogrGetir.Location = new Point(160, 138);
             ogrGetir.Name = "ogrGetir";
             ogrGetir.Size = new Size(244, 32);
             ogrGetir.TabIndex = 4;
             ogrGetir.Text = "Öğrenciyi Getir";
-            ogrGetir.UseVisualStyleBackColor = true;
+            ogrGetir.UseVisualStyleBackColor = false;
             ogrGetir.Click += ogrGetir_Click;
             // 
             // label19
             // 
             label19.AutoSize = true;
+            label19.BackColor = SystemColors.ActiveCaption;
             label19.Dock = DockStyle.Bottom;
+            label19.ForeColor = Color.Navy;
             label19.Location = new Point(3, 111);
             label19.Name = "label19";
             label19.Size = new Size(151, 21);
@@ -529,6 +534,7 @@
             // 
             // eskinumtxt
             // 
+            eskinumtxt.BackColor = SystemColors.ActiveCaption;
             eskinumtxt.Dock = DockStyle.Bottom;
             eskinumtxt.Location = new Point(160, 102);
             eskinumtxt.Name = "eskinumtxt";
@@ -732,13 +738,15 @@
             // 
             // guncellebtn
             // 
+            guncellebtn.BackColor = Color.Lime;
             guncellebtn.Dock = DockStyle.Bottom;
+            guncellebtn.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
             guncellebtn.Location = new Point(142, 246);
             guncellebtn.Name = "guncellebtn";
             guncellebtn.Size = new Size(441, 32);
             guncellebtn.TabIndex = 14;
             guncellebtn.Text = "Güncelle";
-            guncellebtn.UseVisualStyleBackColor = true;
+            guncellebtn.UseVisualStyleBackColor = false;
             guncellebtn.Click += guncellebtn_Click;
             // 
             // ogr_guncelle
